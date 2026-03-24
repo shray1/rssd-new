@@ -941,6 +941,92 @@
       line-height: 1.35;
       letter-spacing: 0.02em;
     }
+
+    /* ── Programme schedule (Media tab) ── */
+    .programme-schedule-wrap {
+      max-width: 920px;
+    }
+    .programme-schedule-block {
+      margin-bottom: 40px;
+    }
+    .programme-schedule-block:last-child {
+      margin-bottom: 0;
+    }
+    .programme-schedule-lang {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--saffron);
+      margin-bottom: 10px;
+    }
+    .programme-schedule-org {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--warm-dark);
+      margin: 0 0 4px 0;
+      line-height: 1.25;
+    }
+    .programme-schedule-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0 0 18px 0;
+    }
+    .programme-table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+    }
+    .programme-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      min-width: 520px;
+    }
+    .programme-table caption {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .programme-table th,
+    .programme-table td {
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+    .programme-table th {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(212, 98, 26, 0.06);
+    }
+    .programme-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .programme-table td:first-child {
+      font-weight: 500;
+      color: var(--warm-dark);
+      white-space: nowrap;
+    }
+    .programme-table[lang="hi"] {
+      font-size: 0.88rem;
+    }
+    .programme-table[lang="hi"] th {
+      font-size: 0.65rem;
+    }
+
     /* ── CTA ── */
     .cta-section {
       background: linear-gradient(135deg, var(--saffron) 0%, #B8501A 100%);
@@ -1445,7 +1531,70 @@
       <p class="media-panel-placeholder">Additional downloads will be listed here.</p>
     </div>
     <div id="mediaPanelProgrammes" class="media-panel" role="tabpanel" aria-labelledby="mediaTabProgrammes" hidden>
-      <p class="media-panel-placeholder">Programme information will be listed here.</p>
+      <div class="programme-schedule-wrap">
+        <div class="programme-schedule-block">
+          <p class="programme-schedule-lang">English version</p>
+          <h3 class="programme-schedule-org">Radha Swami Satsang (Dinod)</h3>
+          <p class="programme-schedule-sub">Satsang schedule — Year 2026</p>
+          <div class="programme-table-scroll">
+            <table class="programme-table">
+              <caption>Satsang programme dates for 2026 in English</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Day</th>
+                  <th scope="col">Festival / event</th>
+                  <th scope="col">Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>01 Jan</td><td>Thu</td><td>New Year</td><td>Bhiwani</td></tr>
+                <tr><td>23 Jan</td><td>Fri</td><td>Basant Panchmi</td><td>Anta</td></tr>
+                <tr><td>01 Feb</td><td>Sun</td><td>Ravidass Jayanti</td><td>Siwani</td></tr>
+                <tr><td>02 Mar</td><td>Mon</td><td>Avtaran Diwas Hazur Maharaj Ji</td><td>Bhiwani</td></tr>
+                <tr><td>12 Apr</td><td>Sun</td><td>Baisakhi</td><td>Hansi</td></tr>
+                <tr><td>29 Jul</td><td>Wed</td><td>Guru Purnima</td><td>Dinod</td></tr>
+                <tr><td>27 Aug</td><td>Thu</td><td>Raksha Bandhan</td><td>Dadri</td></tr>
+                <tr><td>10 Oct</td><td>Sat</td><td>Avtaran Diwas Bade Maharaj Ji</td><td>Dinod</td></tr>
+                <tr><td>18 Oct</td><td>Sun</td><td>Dussehra</td><td>Delhi</td></tr>
+                <tr><td>11 Nov</td><td>Wed</td><td>Bahiya Dooj</td><td>Rohtak</td></tr>
+                <tr><td>24 Nov</td><td>Tue</td><td>Guru Nanak Jayanti</td><td>Bhiwani</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="programme-schedule-block" lang="hi">
+          <p class="programme-schedule-lang">Hindi version</p>
+          <h3 class="programme-schedule-org">राधास्वामी सत्संग (दिनोद)</h3>
+          <p class="programme-schedule-sub">सत्संग सूची — वर्ष 2026</p>
+          <div class="programme-table-scroll">
+            <table class="programme-table" lang="hi">
+              <caption>वर्ष 2026 की सत्संग सूची</caption>
+              <thead>
+                <tr>
+                  <th scope="col">तारीख</th>
+                  <th scope="col">दिन</th>
+                  <th scope="col">त्योहार / कार्यक्रम</th>
+                  <th scope="col">स्थान</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>०१ जनवरी</td><td>गुरुवार</td><td>नववर्ष</td><td>भिवानी</td></tr>
+                <tr><td>२३ जनवरी</td><td>शुक्रवार</td><td>बसंत पंचमी</td><td>अंटा</td></tr>
+                <tr><td>०१ फरवरी</td><td>रविवार</td><td>रविदास जयंती</td><td>सिवानी</td></tr>
+                <tr><td>०२ मार्च</td><td>सोमवार</td><td>अवतरण दिवस हजूर महाराज जी</td><td>भिवानी</td></tr>
+                <tr><td>१२ अप्रैल</td><td>रविवार</td><td>बैसाखी</td><td>हांसी</td></tr>
+                <tr><td>२९ जुलाई</td><td>बुधवार</td><td>गुरु पूर्णिमा</td><td>दिनोद</td></tr>
+                <tr><td>२७ अगस्त</td><td>गुरुवार</td><td>रक्षा बंधन</td><td>दादरी</td></tr>
+                <tr><td>१० अक्टूबर</td><td>शनिवार</td><td>अवतरण दिवस बड़े महाराज जी</td><td>दिनोद</td></tr>
+                <tr><td>१८ अक्टूबर</td><td>रविवार</td><td>दशहरा</td><td>दिल्ली</td></tr>
+                <tr><td>११ नवंबर</td><td>बुधवार</td><td>भैयादूज</td><td>रोहतक</td></tr>
+                <tr><td>२४ नवंबर</td><td>मंगलवार</td><td>गुरु नानक जयंती</td><td>भिवानी</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
