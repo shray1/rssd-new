@@ -944,13 +944,21 @@
 
     /* ── Programme schedule (Media tab) ── */
     .programme-schedule-wrap {
-      max-width: 920px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 32px;
+      max-width: 1200px;
+      align-items: start;
     }
     .programme-schedule-block {
-      margin-bottom: 40px;
-    }
-    .programme-schedule-block:last-child {
       margin-bottom: 0;
+      min-width: 0;
+    }
+    @media (max-width: 960px) {
+      .programme-schedule-wrap {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
     }
     .programme-schedule-lang {
       font-size: 0.72rem;
@@ -984,7 +992,19 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 0.82rem;
-      min-width: 520px;
+      min-width: min(100%, 480px);
+    }
+    @media (min-width: 961px) {
+      .programme-schedule-wrap .programme-table {
+        font-size: 0.78rem;
+      }
+      .programme-schedule-wrap .programme-table th,
+      .programme-schedule-wrap .programme-table td {
+        padding: 10px 10px;
+      }
+      .programme-schedule-wrap .programme-table[lang="hi"] {
+        font-size: 0.82rem;
+      }
     }
     .programme-table caption {
       position: absolute;
