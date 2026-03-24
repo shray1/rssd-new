@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radhaswami Satsang Dinod</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --saffron:   #D4621A;
+      --gold:      #C8942A;
+      --cream:     #FAF6EF;
+      --warm-dark: #1C1309;
+      --mid:       #5A3E28;
+      --light-mid: #A07850;
+      --text:      #2E1F0E;
+      --muted:     #7A6050;
+      --white:     #FFFFFF;
+      --card-bg:   #FFF9F2;
+      --border:    rgba(200,148,42,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER / NAV ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,246,239,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; max-width: 1200px; margin: 0 auto;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .logo-symbol {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: white; font-size: 20px; font-weight: 600;
+      flex-shrink: 0;
+    }
+    .logo-text { line-height: 1.2; }
+    .logo-text .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--warm-dark); letter-spacing: 0.02em;
+    }
+    .logo-text .sub {
+      font-size: 0.65rem; font-weight: 400;
+      color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    nav { display: flex; gap: 2px; }
+    nav a {
+      padding: 8px 14px; font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--mid); text-decoration: none;
+      border-radius: 4px; transition: all 0.2s;
+    }
+    nav a:hover { color: var(--saffron); background: rgba(212,98,26,0.07); }
+
+    .nav-btn {
+      background: var(--saffron); color: white !important;
+      padding: 8px 18px; border-radius: 4px;
+    }
+    .nav-btn:hover { background: var(--gold) !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--mid); border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(212,98,26,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(200,148,42,0.08) 0%, transparent 50%),
+        var(--cream);
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -10%; right: -5%;
+      width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
+      background: radial-gradient(circle, rgba(212,98,26,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-lotus {
+      position: absolute; bottom: -80px; right: -40px;
+      font-size: 380px; opacity: 0.035; color: var(--saffron);
+      pointer-events: none; user-select: none; line-height: 1;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--saffron); font-weight: 500;
+      border-top: 1px solid var(--saffron); padding-top: 8px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 300; line-height: 1.15;
+      color: var(--warm-dark); margin-bottom: 12px;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--saffron);
+    }
+    .hero-subtitle {
+      font-size: 0.95rem; color: var(--muted); margin-bottom: 36px;
+      max-width: 420px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--saffron); color: white;
+      padding: 13px 30px; border-radius: 4px;
+      text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.25s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--mid); border: 1px solid var(--border);
+      padding: 13px 30px; border-radius: 4px;
+      text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 400; transition: all 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--saffron); color: var(--saffron); }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      box-shadow: 0 24px 60px rgba(90,62,40,0.09);
+      position: relative;
+    }
+    .hero-card::before {
+      content: 'ॐ';
+      position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+      background: var(--saffron); color: white;
+      width: 36px; height: 36px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-family: 'Cormorant Garamond', serif;
+    }
+    .card-label {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .card-event-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--warm-dark); margin-bottom: 6px;
+    }
+    .card-event-detail {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; color: var(--muted); margin-bottom: 6px;
+    }
+    .card-event-detail span:first-child { color: var(--saffron); font-size: 1rem; }
+    .divider-thin {
+      height: 1px; background: var(--border); margin: 20px 0;
+    }
+    .whatsapp-notice {
+      background: rgba(212,98,26,0.06);
+      border-radius: 8px; padding: 14px 16px;
+      font-size: 0.82rem; color: var(--mid);
+    }
+    .whatsapp-notice strong { color: var(--saffron); }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--saffron); font-weight: 500; margin-bottom: 12px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300;
+      color: var(--warm-dark); line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 0.95rem; color: var(--muted);
+      max-width: 540px; margin-bottom: 50px;
+    }
+
+    /* ── ABOUT / STATS ── */
+    .about-bg {
+      background:
+        linear-gradient(135deg, rgba(200,148,42,0.06) 0%, transparent 50%),
+        var(--cream);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+    }
+    .about-text p {
+      font-size: 0.95rem; color: var(--muted); margin-bottom: 18px; line-height: 1.8;
+    }
+    .stats-row {
+      display: flex; gap: 0; margin-top: 36px;
+    }
+    .stat {
+      flex: 1; padding: 20px 24px;
+      border-left: 1px solid var(--border);
+    }
+    .stat:first-child { border-left: none; padding-left: 0; }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 600;
+      color: var(--saffron); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-img-box {
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 100%);
+      border-radius: 12px;
+      aspect-ratio: 4/5;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .about-img-box::before {
+      content: '';
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 8px;
+    }
+    .about-img-box .om {
+      font-size: 8rem; color: rgba(255,255,255,0.25);
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .about-float-card {
+      position: absolute; bottom: -20px; left: -30px;
+      background: white; border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 20px;
+      box-shadow: 0 12px 40px rgba(90,62,40,0.12);
+    }
+    .about-float-card .fc-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+    .about-float-card .fc-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--warm-dark);
+    }
+
+    /* ── PILLARS ── */
+    .pillars-bg { background: var(--warm-dark); }
+    .pillars-bg .section-title { color: var(--cream); }
+    .pillars-bg .section-desc { color: var(--light-mid); }
+    .pillars-bg .section-tag { color: var(--gold); }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden;
+    }
+    .pillar {
+      padding: 44px 34px;
+      background: rgba(255,255,255,0.03);
+      border-right: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.3s;
+    }
+    .pillar:last-child { border-right: none; }
+    .pillar:hover { background: rgba(212,98,26,0.12); }
+    .pillar-icon {
+      font-size: 2rem; margin-bottom: 18px; display: block;
+    }
+    .pillar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--cream); font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .pillar p { font-size: 0.87rem; color: rgba(200,160,120,0.8); line-height: 1.75; }
+    .pillar-link {
+      display: inline-block; margin-top: 16px;
+      font-size: 0.75rem; color: var(--gold);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border-bottom: 1px solid rgba(200,148,42,0.4);
+      padding-bottom: 2px; transition: all 0.2s;
+    }
+    .pillar-link:hover { border-color: var(--gold); }
+
+    /* ── LINEAGE ── */
+    .lineage-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .lineage-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 28px 22px; text-align: center;
+      transition: all 0.3s; position: relative;
+    }
+    .lineage-card:hover {
+      box-shadow: 0 16px 40px rgba(90,62,40,0.1);
+      transform: translateY(-4px);
+    }
+    .lineage-avatar {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, rgba(212,98,26,0.15), rgba(200,148,42,0.2));
+      border-radius: 50%; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; border: 2px solid var(--border);
+    }
+    .lineage-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--warm-dark); margin-bottom: 4px;
+    }
+    .lineage-card .years {
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em;
+    }
+
+    /* ── MEDIA ── */
+    .media-bg { background: var(--card-bg); }
+    .media-tabs {
+      display: flex; gap: 4px; margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab {
+      padding: 10px 20px; font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: all 0.2s; cursor: pointer; background: none; border-top: none;
+      border-left: none; border-right: none;
+    }
+    .tab.active, .tab:hover { color: var(--saffron); border-bottom-color: var(--saffron); }
+    .media-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .media-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .media-card:hover { box-shadow: 0 12px 32px rgba(90,62,40,0.1); transform: translateY(-3px); }
+    .media-thumb {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; position: relative;
+    }
+    .play-btn {
+      width: 50px; height: 50px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; backdrop-filter: blur(4px);
+    }
+    .media-info { padding: 16px; }
+    .media-info h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--warm-dark); margin-bottom: 4px;
+    }
+    .media-info .meta { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--saffron) 0%, #B8501A 100%);
+      padding: 80px 5%; text-align: center;
+    }
+    .cta-section .section-tag { color: rgba(255,255,255,0.7); }
+    .cta-section .section-title { color: white; text-align: center; margin-bottom: 8px; }
+    .cta-section .section-desc { color: rgba(255,255,255,0.8); text-align: center; margin: 0 auto 36px; }
+    .cta-grid {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-white {
+      background: white; color: var(--saffron);
+      padding: 14px 32px; border-radius: 4px;
+      text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
+      transition: all 0.25s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-ghost-white {
+      background: transparent; color: white;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 14px 32px; border-radius: 4px;
+      text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400;
+      transition: all 0.25s;
+    }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .contact-item {
+      display: flex; gap: 14px; align-items: flex-start; margin-bottom: 28px;
+    }
+    .contact-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: rgba(212,98,26,0.1); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .contact-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+    .contact-val { font-size: 0.95rem; color: var(--text); }
+    .social-row { display: flex; gap: 10px; margin-top: 30px; }
+    .social-btn {
+      padding: 10px 18px; border: 1px solid var(--border);
+      border-radius: 6px; font-size: 0.8rem; color: var(--mid);
+      text-decoration: none; transition: all 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .social-btn:hover { border-color: var(--saffron); color: var(--saffron); }
+    .map-placeholder {
+      background: linear-gradient(135deg, rgba(212,98,26,0.08), rgba(200,148,42,0.12));
+      border: 1px solid var(--border); border-radius: 12px;
+      aspect-ratio: 4/3; display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: 10px;
+      color: var(--muted); font-size: 0.9rem;
+    }
+    .map-placeholder .map-icon { font-size: 2.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--warm-dark); color: rgba(200,160,120,0.7);
+      padding: 50px 5% 30px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 30px;
+    }
+    .footer-brand .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--cream); margin-bottom: 10px;
+    }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h5 {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(200,160,120,0.5); margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; font-size: 0.85rem; color: rgba(200,160,120,0.7);
+      text-decoration: none; margin-bottom: 9px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; flex-wrap: wrap; gap: 10px;
+    }
+    .footer-bottom a { color: rgba(200,160,120,0.5); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: rgba(250,246,239,0.98); backdrop-filter: blur(10px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--warm-dark);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--saffron); }
+    .close-btn {
+      position: absolute; top: 24px; right: 5%;
+      font-size: 1.8rem; cursor: pointer; color: var(--mid);
+      background: none; border: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card { margin-top: 0; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .lineage-grid { grid-template-columns: repeat(2,1fr); }
+      .media-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 60px 5%; }
+      .lineage-grid { grid-template-columns: 1fr 1fr; }
+      .media-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .stats-row { flex-wrap: wrap; }
+      .stat { flex: 1 0 40%; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content { animation: fadeUp 0.8s ease both; }
+    .hero-card     { animation: fadeUp 0.8s 0.2s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-symbol">ॐ</div>
+      <div class="logo-text">
+        <div class="name">Radhaswami Satsang</div>
+        <div class="sub">Dinod Dham · Bhiwani</div>
+      </div>
+    </a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#pillars">Faith</a>
+      <a href="#lineage">Lineage</a>
+      <a href="#media">Media</a>
+      <a href="#contact" class="nav-btn">Contact</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+  <a href="#about" onclick="document.getElementById('mobileMenu').classList.remove('open')">About</a>
+  <a href="#pillars" onclick="document.getElementById('mobileMenu').classList.remove('open')">Faith</a>
+  <a href="#lineage" onclick="document.getElementById('mobileMenu').classList.remove('open')">Lineage</a>
+  <a href="#media" onclick="document.getElementById('mobileMenu').classList.remove('open')">Media</a>
+  <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-lotus">🪷</div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="hero-tag">Radha Swami · राधा स्वामी</span>
+      <h1>A Path to<br/><em>Eternal Peace</em><br/>& Inner Light</h1>
+      <p class="hero-subtitle">
+        Radhaswami Satsang Dinod — a spiritual sanctuary in Haryana, dedicated to the teachings of Naam, Seva, and Simran under the divine guidance of the Masters.
+      </p>
+      <div class="hero-actions">
+        <a href="#about" class="btn-primary">Discover the Path</a>
+        <a href="#pillars" class="btn-outline">Our Teachings</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="card-label">Upcoming Programme</div>
+      <div class="card-event-title">Barwala Satsang</div>
+      <div class="card-event-detail">
+        <span>📅</span><span>19th July 2025, Saturday</span>
+      </div>
+      <div class="card-event-detail">
+        <span>📍</span><span>Hansi Road, Barwala, Haryana</span>
+      </div>
+      <div class="divider-thin"></div>
+      <div class="whatsapp-notice">
+        📱 Join our WhatsApp service for live updates.<br/>
+        Send <strong>"JOIN RADHASWAMI"</strong> to <strong>08285616199</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="about-bg">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-tag">About the Ashram</span>
+        <h2 class="section-title">Dinod Dham —<br/>Where Souls Find Rest</h2>
+        <p>
+          Radhaswami Satsang Dinod (RSSD) is a non-profit spiritual organisation seated in the peaceful village of Dinod, 11 km from Bhiwani and 130 km from Delhi. Established in the latter decades of the twentieth century, it has grown into a beloved centre for seekers of truth.
+        </p>
+        <p>
+          The ashram was founded by Param Sant Tara Chand Ji Maharaj, born in 1925 in Dinod. He dedicated his entire life — unmarried, austere, and devoted — to finding eternal peace. Inspired by the great saints before him, he declared that inner liberation is attainable in one's lifetime.
+        </p>
+        <p>
+          Today, under the divine guidance of Sant Kanwar Saheb Ji Maharaj, the satsang continues to guide thousands on the path of Naam, Seva, and Simran.
+        </p>
+        <a href="#lineage" class="btn-primary" style="margin-top:10px; display:inline-block;">Explore Lineage</a>
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Years of Legacy</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">1861</div>
+            <div class="stat-label">Faith Founded</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">70K+</div>
+            <div class="stat-label">Community Members</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-img-box">
+          <span class="om">ॐ</span>
+        </div>
+        <div class="about-float-card">
+          <div class="fc-label">Headquarters</div>
+          <div class="fc-val">Dinod, Bhiwani<br/>Haryana, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PILLARS ── -->
+<section id="pillars" class="pillars-bg">
+  <div class="section-inner">
+    <span class="section-tag">The Radhaswami Faith</span>
+    <h2 class="section-title">Three Pillars of the Path</h2>
+    <p class="section-desc">The Radhaswami faith offers the simplest and most direct way to achieve eternal peace within this very lifetime.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <span class="pillar-icon">🕉️</span>
+        <h3>Naam — The Divine Word</h3>
+        <p>Naam is the sacred inner sound current — the cosmic vibration that connects the soul to its divine source. Initiation into Naam is the first step on the spiritual path, given by the living Master.</p>
+        <a href="#" class="pillar-link">Learn More →</a>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🙏</span>
+        <h3>Seva — Selfless Service</h3>
+        <p>Seva means performing service without ego or expectation of reward. It purifies the mind and opens the heart, making one worthy of higher spiritual states through dedicated, humble action.</p>
+        <a href="#" class="pillar-link">Learn More →</a>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧘</span>
+        <h3>Simran — Remembrance</h3>
+        <p>Simran is the continuous repetition and remembrance of the divine names. Through Simran, the wandering mind is stilled, and the practitioner is drawn inward toward the light and sound within.</p>
+        <a href="#" class="pillar-link">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LINEAGE ── -->
+<section id="lineage">
+  <div class="section-inner">
+    <span class="section-tag">The Spiritual Lineage</span>
+    <h2 class="section-title">Masters of the Radhaswami Faith</h2>
+    <p class="section-desc">A sacred chain of enlightened Masters, each carrying the torch of divine wisdom across generations.</p>
+    <div class="lineage-grid">
+      <div class="lineage-card">
+        <div class="lineage-avatar">🪷</div>
+        <h4>Shiv Dayal Singh Ji</h4>
+        <div class="years">Founder · 1818–1878</div>
+      </div>
+      <div class="lineage-card">
+        <div class="lineage-avatar">✨</div>
+        <h4>Jaimal Singh Ji</h4>
+        <div class="years">Param Sant · 1839–1903</div>
+      </div>
+      <div class="lineage-card">
+        <div class="lineage-avatar">🕉️</div>
+        <h4>Tara Chand Ji Maharaj</h4>
+        <div class="years">Founder of RSSD · 1925–2002</div>
+      </div>
+      <div class="lineage-card">
+        <div class="lineage-avatar">🙏</div>
+        <h4>Kanwar Saheb Ji Maharaj</h4>
+        <div class="years">Present Satguru</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEDIA ── -->
+<section id="media" class="media-bg">
+  <div class="section-inner">
+    <span class="section-tag">Satsang & Library</span>
+    <h2 class="section-title">Discourses, Videos & Downloads</h2>
+    <p class="section-desc">Access spiritual discourses, satsang recordings, the monthly magazine, and other resources.</p>
+    <div class="media-tabs">
+      <button class="tab active">Satsang Videos</button>
+      <button class="tab">Monthly Magazine</button>
+      <button class="tab">Downloads</button>
+      <button class="tab">Programmes</button>
+    </div>
+    <div class="media-grid">
+      <div class="media-card">
+        <div class="media-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="media-info">
+          <h5>Spiritual Discourse — Naam Simran</h5>
+          <div class="meta">Satsang Video · Barwala Ashram</div>
+        </div>
+      </div>
+      <div class="media-card">
+        <div class="media-thumb" style="background: linear-gradient(135deg, #B8501A 0%, #C8942A 100%);">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="media-info">
+          <h5>Path of the Masters — Monthly Discourse</h5>
+          <div class="meta">Audio Satsang · Dinod Dham</div>
+        </div>
+      </div>
+      <div class="media-card">
+        <div class="media-thumb" style="background: linear-gradient(135deg, #7A3A1A 0%, #D4621A 100%);">
+          <div class="play-btn">📖</div>
+        </div>
+        <div class="media-info">
+          <h5>Radhaswami Monthly Magazine</h5>
+          <div class="meta">PDF Download · Current Issue</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="#" class="btn-outline">View Full Library →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta-section">
+  <div class="section-inner">
+    <span class="section-tag">Join the Satsang</span>
+    <h2 class="section-title">Come, Begin the Inner Journey</h2>
+    <p class="section-desc">
+      Thousands have found inner peace through this ancient path. Whether you seek meditation guidance, satsang programmes, or a deeper spiritual connection — you are welcome here.
+    </p>
+    <div class="cta-grid">
+      <a href="#contact" class="btn-white">Visit the Ashram</a>
+      <a href="#" class="btn-ghost-white">View Programmes</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <span class="section-tag">Reach Us</span>
+        <h2 class="section-title">Visit Dinod Dham</h2>
+        <p class="section-desc">The ashram is open to all seekers. We warmly welcome you.</p>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-val">Village Dinod, Distt. Bhiwani<br/>Haryana, India · 11 km from Bhiwani</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">WhatsApp Updates</div>
+            <div class="contact-val">Send "JOIN RADHASWAMI" to 08285616199</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val">radhaswamidinod.org@gmail.com</div>
+          </div>
+        </div>
+
+        <div class="social-row">
+          <a href="https://facebook.com/RadhaSwamiDinod" class="social-btn" target="_blank">📘 Facebook</a>
+          <a href="https://youtube.com/RadhaSwamiDinod" class="social-btn" target="_blank">▶ YouTube</a>
+          <a href="https://twitter.com/RadhaSwamiDinod" class="social-btn" target="_blank">🐦 Twitter</a>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <span class="map-icon">🗺️</span>
+        <span>Dinod Dham, Bhiwani, Haryana</span>
+        <a href="https://www.radhaswamidinod.org/contact-us.html" class="btn-outline" style="margin-top:10px;" target="_blank">View on Map</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="name">Radhaswami Satsang Dinod</div>
+        <p>A non-profit spiritual organisation dedicated to the path of Naam, Seva, and Simran. Rooted in Dinod, Haryana — open to all seekers of inner peace.</p>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <a href="#">The Founder</a>
+        <a href="#">About Ashram</a>
+        <a href="#">Lineage</a>
+        <a href="#">Star Monument</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="#">Satsang Videos</a>
+        <a href="#">Monthly Magazine</a>
+        <a href="#">Downloads</a>
+        <a href="#">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="#">Programmes</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Photo Gallery</a>
+        <a href="#">Satguru Kripa</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Radhaswami Satsang Dinod. All rights reserved.</span>
+      <span>Made with devotion 🙏 · <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Smooth header shrink on scroll
+  window.addEventListener('scroll', () => {
+    const h = document.querySelector('header');
+    h.style.boxShadow = window.scrollY > 20
+      ? '0 4px 24px rgba(90,62,40,0.08)'
+      : 'none';
+  });
+</script>
+</body>
+</html>
