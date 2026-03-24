@@ -842,6 +842,59 @@
     }
     .media-info .meta { font-size: 0.75rem; color: var(--muted); }
 
+    .media-panel[hidden] { display: none !important; }
+    .media-panel-intro {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+    .sant-sandesh-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 640px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .sant-sandesh-list li { border-bottom: 1px solid var(--border); }
+    .sant-sandesh-list li:last-child { border-bottom: none; }
+    .sant-sandesh-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--warm-dark);
+      font-size: 0.95rem;
+      font-weight: 400;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sant-sandesh-list a:hover {
+      background: rgba(212, 98, 26, 0.07);
+      color: var(--saffron);
+    }
+    .sant-sandesh-list a:focus-visible {
+      outline: 2px solid var(--saffron);
+      outline-offset: -2px;
+    }
+    .sant-sandesh-list .pdf-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .sant-sandesh-list a:hover .pdf-label { color: var(--light-mid); }
+    .media-panel-placeholder {
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding: 24px 0;
+    }
+
     /* ── CTA ── */
     .cta-section {
       background: linear-gradient(135deg, var(--saffron) 0%, #B8501A 100%);
@@ -1100,7 +1153,7 @@
             <div class="stat-label">Faith Founded</div>
           </div>
           <div class="stat">
-            <div class="stat-number">70K+</div>
+            <div class="stat-number">2 Cr+</div>
             <div class="stat-label">Community Members</div>
           </div>
         </div>
@@ -1223,12 +1276,13 @@
     <span class="section-tag">Satsang & Library</span>
     <h2 class="section-title">Discourses, Videos & Downloads</h2>
     <p class="section-desc">Access spiritual discourses, satsang recordings, the monthly magazine, and other resources.</p>
-    <div class="media-tabs">
-      <button class="tab active">Satsang Videos</button>
-      <button class="tab">Monthly Magazine</button>
-      <button class="tab">Downloads</button>
-      <button class="tab">Programmes</button>
+    <div class="media-tabs" role="tablist" aria-label="Media library">
+      <button type="button" class="tab active" role="tab" id="mediaTabVideos" aria-selected="true" aria-controls="mediaPanelVideos" data-media-tab="videos">Satsang Videos</button>
+      <button type="button" class="tab" role="tab" id="mediaTabMagazine" aria-selected="false" aria-controls="mediaPanelMagazine" data-media-tab="magazine">Monthly Magazine</button>
+      <button type="button" class="tab" role="tab" id="mediaTabDownloads" aria-selected="false" aria-controls="mediaPanelDownloads" data-media-tab="downloads">Downloads</button>
+      <button type="button" class="tab" role="tab" id="mediaTabProgrammes" aria-selected="false" aria-controls="mediaPanelProgrammes" data-media-tab="programmes">Programmes</button>
     </div>
+    <div id="mediaPanelVideos" class="media-panel" role="tabpanel" aria-labelledby="mediaTabVideos">
     <div class="media-grid">
       <div class="media-card">
         <div class="media-thumb media-thumb--embed" style="padding:0;overflow:hidden;">
@@ -1260,6 +1314,42 @@
     </div>
     <div style="text-align:center; margin-top:36px;">
       <a href="#" class="btn-outline">View Full Library →</a>
+    </div>
+    </div>
+    <div id="mediaPanelMagazine" class="media-panel" role="tabpanel" aria-labelledby="mediaTabMagazine" hidden>
+      <p class="media-panel-intro">Sant Sandesh — monthly magazine. Select an issue to open the PDF in a new tab.</p>
+      <ul class="sant-sandesh-list">
+        <li>
+          <a href="Media/Sant-Sandesh/Sant-Sandesh1.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Sant Sandesh — Issue 1</span>
+            <span class="pdf-label">PDF</span>
+          </a>
+        </li>
+        <li>
+          <a href="Media/Sant-Sandesh/Sant-Sandesh2.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Sant Sandesh — Issue 2</span>
+            <span class="pdf-label">PDF</span>
+          </a>
+        </li>
+        <li>
+          <a href="Media/Sant-Sandesh/SantSandesh3.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Sant Sandesh — Issue 3</span>
+            <span class="pdf-label">PDF</span>
+          </a>
+        </li>
+        <li>
+          <a href="Media/Sant-Sandesh/SantSandesh4.pdf" target="_blank" rel="noopener noreferrer">
+            <span>Sant Sandesh — Issue 4</span>
+            <span class="pdf-label">PDF</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div id="mediaPanelDownloads" class="media-panel" role="tabpanel" aria-labelledby="mediaTabDownloads" hidden>
+      <p class="media-panel-placeholder">Additional downloads will be listed here.</p>
+    </div>
+    <div id="mediaPanelProgrammes" class="media-panel" role="tabpanel" aria-labelledby="mediaTabProgrammes" hidden>
+      <p class="media-panel-placeholder">Programme information will be listed here.</p>
     </div>
   </div>
 </section>
@@ -1447,12 +1537,40 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+  (function () {
+    const section = document.getElementById('media');
+    if (!section) return;
+    const tabs = Array.from(section.querySelectorAll('.media-tabs .tab'));
+    const panelByKey = {
+      videos: section.querySelector('#mediaPanelVideos'),
+      magazine: section.querySelector('#mediaPanelMagazine'),
+      downloads: section.querySelector('#mediaPanelDownloads'),
+      programmes: section.querySelector('#mediaPanelProgrammes')
+    };
+
+    function showPanel(key) {
+      tabs.forEach(t => {
+        const active = t.dataset.mediaTab === key;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      Object.entries(panelByKey).forEach(([k, panel]) => {
+        if (!panel) return;
+        if (k === key) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const key = tab.dataset.mediaTab;
+        if (key) showPanel(key);
+      });
     });
-  });
+  })();
 
   (function () {
     const modal = document.getElementById('lineageModal');
