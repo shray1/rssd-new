@@ -207,7 +207,7 @@
     .whatsapp-notice strong { color: var(--saffron); }
 
     /* ── SECTIONS COMMON ── */
-    section { padding: 10px 5%; }
+    section { padding: 90px 5%; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
     .section-tag {
       font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -513,7 +513,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      max-width: min(920px, 100%);
+      width: 100%;
+      max-width: 100%;
       margin: 28px auto 0;
       position: relative;
       z-index: 1;
@@ -572,8 +573,11 @@
       flex-direction: row;
       flex-wrap: nowrap;
       gap: 13px;
-      width: max-content;
+      width: 100%;
+      min-width: max-content;
       margin: 0;
+      justify-content: space-between;
+      box-sizing: border-box;
     }
     #gallery .gallery-slider-wrap .gallery-cell {
       flex: 0 0 108px;
@@ -900,7 +904,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
       gap: 14px;
-      max-width: 920px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .shabad-vani-card {
       display: block;
