@@ -895,6 +895,52 @@
       padding: 24px 0;
     }
 
+    /* Shabad Vani (playlists & audio pages — see radhaswamidinod.org/shabad_vani.html) */
+    .shabad-vani-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+      gap: 14px;
+      max-width: 920px;
+    }
+    .shabad-vani-card {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--warm-dark);
+      box-shadow: 0 2px 10px rgba(90, 62, 40, 0.06);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    a.shabad-vani-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(212, 98, 26, 0.35);
+      box-shadow: 0 10px 28px rgba(90, 62, 40, 0.12);
+    }
+    a.shabad-vani-card:focus-visible {
+      outline: 2px solid var(--saffron);
+      outline-offset: 2px;
+    }
+    .shabad-vani-card__thumb {
+      aspect-ratio: 1;
+      background: linear-gradient(145deg, rgba(212, 98, 26, 0.08), rgba(200, 148, 42, 0.1));
+      overflow: hidden;
+    }
+    .shabad-vani-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .shabad-vani-card__label {
+      padding: 10px 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+    }
     /* ── CTA ── */
     .cta-section {
       background: linear-gradient(135deg, var(--saffron) 0%, #B8501A 100%);
@@ -1279,6 +1325,7 @@
     <div class="media-tabs" role="tablist" aria-label="Media library">
       <button type="button" class="tab active" role="tab" id="mediaTabVideos" aria-selected="true" aria-controls="mediaPanelVideos" data-media-tab="videos">Satsang Videos</button>
       <button type="button" class="tab" role="tab" id="mediaTabMagazine" aria-selected="false" aria-controls="mediaPanelMagazine" data-media-tab="magazine">Monthly Magazine</button>
+      <button type="button" class="tab" role="tab" id="mediaTabShabad" aria-selected="false" aria-controls="mediaPanelShabad" data-media-tab="shabad">Shabad Vani</button>
       <button type="button" class="tab" role="tab" id="mediaTabDownloads" aria-selected="false" aria-controls="mediaPanelDownloads" data-media-tab="downloads">Downloads</button>
       <button type="button" class="tab" role="tab" id="mediaTabProgrammes" aria-selected="false" aria-controls="mediaPanelProgrammes" data-media-tab="programmes">Programmes</button>
     </div>
@@ -1313,7 +1360,7 @@
       </div>
     </div>
     <div style="text-align:center; margin-top:36px;">
-      <a href="#" class="btn-outline">View Full Library →</a>
+      <a href="https://www.youtube.com/@RadhaSwamiDinod" class="btn-outline" target="_blank" rel="noopener noreferrer">View Full Library →</a>
     </div>
     </div>
     <div id="mediaPanelMagazine" class="media-panel" role="tabpanel" aria-labelledby="mediaTabMagazine" hidden>
@@ -1344,6 +1391,55 @@
           </a>
         </li>
       </ul>
+    </div>
+    <div id="mediaPanelShabad" class="media-panel" role="tabpanel" aria-labelledby="mediaTabShabad" hidden>
+      <!-- <p class="media-panel-intro">Listen to the latest Shabad Vani by Radhaswami Satsang Dinod. Each card opens the playlist or page in a new tab (source: <a href="https://radhaswamidinod.org/shabad_vani.html" target="_blank" rel="noopener noreferrer">radhaswamidinod.org</a>).</p> -->
+      <div class="shabad-vani-grid">
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc7C_akQD2MnSID2xpOnv5Fq" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-10.png" alt="Satguru Prem 10" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 10</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc4vd4utqQQmbaM9oKlB_IDP" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-9.png" alt="Satguru Prem 9" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 9</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc5ku-bWMxmRI3kvKD257hTw" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-8.png" alt="Satguru Prem 8" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 8</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc4vw62F__sgc-rTVXmnr8F2" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-7.png" alt="Satguru Prem 7" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 7</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc4bYGVeegnFYX3yRCr05Zrd" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-5.png" alt="Satguru Prem 5" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 5</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc5q2tad6lRDCmahKKHzw_i6" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-4.png" alt="Satguru Prem 4" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 4</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc5jeRL8CRxE9yLkNokE8J3y" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-3.png" alt="Satguru Prem 3" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 3</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc5q2tad6lRDCmahKKHzw_i6" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-2.png" alt="Satguru Prem 2" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 2</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc5QdQOfTeUQi45OLxaFMRcY" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/Satguru-Prem-1.png" alt="Satguru Prem 1" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Satguru Prem 1</div>
+        </a>
+        <a href="https://www.youtube.com/playlist?list=PLKarY2nMjFc5TLS-L12i55TrST-khKk_N" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/ShabadVani-Vol-12.png" alt="Shabad Vani Vol. 12" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">Shabad Vani Vol. 12</div>
+        </a>
+        <!-- <a href="https://radhaswamidinod.org/ShbadVani-audio2013.html" target="_blank" rel="noopener noreferrer" class="shabad-vani-card">
+          <div class="shabad-vani-card__thumb"><img src="https://radhaswamidinod.org/common/image/audio_img_first.jpg" alt="2013 Songs" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade"></div>
+          <div class="shabad-vani-card__label">2013 Songs</div>
+        </a> -->
+      </div>
     </div>
     <div id="mediaPanelDownloads" class="media-panel" role="tabpanel" aria-labelledby="mediaTabDownloads" hidden>
       <p class="media-panel-placeholder">Additional downloads will be listed here.</p>
@@ -1544,6 +1640,7 @@
     const panelByKey = {
       videos: section.querySelector('#mediaPanelVideos'),
       magazine: section.querySelector('#mediaPanelMagazine'),
+      shabad: section.querySelector('#mediaPanelShabad'),
       downloads: section.querySelector('#mediaPanelDownloads'),
       programmes: section.querySelector('#mediaPanelProgrammes')
     };
