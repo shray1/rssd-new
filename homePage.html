@@ -1047,6 +1047,67 @@
       font-size: 0.65rem;
     }
 
+    /* Books published (Media tab) — compact */
+    #mediaPanelDownloads .media-panel-intro {
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+      max-width: 52ch;
+    }
+    .books-published {
+      max-width: 720px;
+    }
+    .books-published__group {
+      margin-bottom: 18px;
+    }
+    .books-published__group:last-child {
+      margin-bottom: 0;
+    }
+    .books-published__author {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--warm-dark);
+      margin: 0 0 6px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.3;
+    }
+    .books-published__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .books-published__list--two-col {
+      columns: 2;
+      column-gap: 1.5rem;
+      column-fill: balance;
+    }
+    @media (max-width: 560px) {
+      .books-published__list--two-col {
+        columns: 1;
+      }
+    }
+    .books-published__list li {
+      position: relative;
+      padding: 2px 0 2px 14px;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.38;
+      break-inside: avoid;
+    }
+    .books-published__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--saffron);
+      opacity: 0.55;
+    }
+
     /* ── CTA ── */
     .cta-section {
       background: linear-gradient(135deg, var(--saffron) 0%, #B8501A 100%);
@@ -1432,7 +1493,7 @@
       <button type="button" class="tab active" role="tab" id="mediaTabVideos" aria-selected="true" aria-controls="mediaPanelVideos" data-media-tab="videos">Satsang Videos</button>
       <button type="button" class="tab" role="tab" id="mediaTabMagazine" aria-selected="false" aria-controls="mediaPanelMagazine" data-media-tab="magazine">Monthly Magazine</button>
       <button type="button" class="tab" role="tab" id="mediaTabShabad" aria-selected="false" aria-controls="mediaPanelShabad" data-media-tab="shabad">Shabad Vani</button>
-      <button type="button" class="tab" role="tab" id="mediaTabDownloads" aria-selected="false" aria-controls="mediaPanelDownloads" data-media-tab="downloads">Downloads</button>
+      <button type="button" class="tab" role="tab" id="mediaTabDownloads" aria-selected="false" aria-controls="mediaPanelDownloads" data-media-tab="downloads">Books Published</button>
       <button type="button" class="tab" role="tab" id="mediaTabProgrammes" aria-selected="false" aria-controls="mediaPanelProgrammes" data-media-tab="programmes">Programmes</button>
     </div>
     <div id="mediaPanelVideos" class="media-panel" role="tabpanel" aria-labelledby="mediaTabVideos">
@@ -1548,7 +1609,92 @@
       </div>
     </div>
     <div id="mediaPanelDownloads" class="media-panel" role="tabpanel" aria-labelledby="mediaTabDownloads" hidden>
-      <p class="media-panel-placeholder">Additional downloads will be listed here.</p>
+      <p class="media-panel-intro">Publications from the Masters and Radhaswami Satsang Dinod — grouped by author.</p>
+      <div class="books-published">
+        <section class="books-published__group">
+          <h3 class="books-published__author">Swami Ji Maharaj books</h3>
+          <ul class="books-published__list">
+            <li>Sarbachan (Chhand Band)</li>
+            <li>Sarbachan (Vartik)</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Maharishi Shiv Brat Lal Ji books</h3>
+          <ul class="books-published__list books-published__list--two-col">
+            <li>Radhaswami Yog: Part 1-6</li>
+            <li>Radhaswami Mat Prakash</li>
+            <li>Adbhut Upasana Yog: Part 1-2</li>
+            <li>Anmol Vichar</li>
+            <li>Dus Avtaron Ki Katha</li>
+            <li>Kabir Prichaya Adyagyan</li>
+            <li>Kabir Yog: Part 1-13</li>
+            <li>Kabir Bijak: Part 1-3</li>
+            <li>Karam Rahshya</li>
+            <li>Light of Anand Yoga (English)</li>
+            <li>Nanak Yog: Part 1-3</li>
+            <li>Panth Sandesh</li>
+            <li>Safalta Ke Sadhan</li>
+            <li>Sahej Bhakti</li>
+            <li>Saptrishi Vartant</li>
+            <li>Sharanangati Yog</li>
+            <li>Satsang Ke Aath Vachan</li>
+            <li>Vyavahar Gyan Prakash</li>
+            <li>Vicharanjali</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Armaan Sahab Ji books</h3>
+          <ul class="books-published__list books-published__list--two-col">
+            <li>Armaan Sagar</li>
+            <li>Armaan Sagar Part-2</li>
+            <li>Sankat Mochan Ramayan</li>
+            <li>Vashiyat Nama</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Baba Faqir Chand Ji book</h3>
+          <ul class="books-published__list">
+            <li>Panch Naam Ki Vyakhya</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Param Sant Tara Chand Ji Maharaj book</h3>
+          <ul class="books-published__list">
+            <li>Anubhav Prakash</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Huzur Kanwar Saheb Ji Maharaj books</h3>
+          <ul class="books-published__list books-published__list--two-col">
+            <li>Satguru Prem</li>
+            <li>Radhaswami Nij Naam Sada ki Mukti</li>
+            <li>Jui Se Jahan</li>
+            <li>Satguru Mahima</li>
+            <li>Pravachan Sangreh</li>
+            <li>Satguru Gyanvahini</li>
+            <li>Nirmal Bhakti</li>
+            <li>Nirmal Dhara</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Chacha Sadhu Ram Ji book</h3>
+          <ul class="books-published__list">
+            <li>Chacha Saheb Ki Diary: Part 1-2</li>
+          </ul>
+        </section>
+        <section class="books-published__group">
+          <h3 class="books-published__author">Other Radha Swami Satsang Dinod published books</h3>
+          <ul class="books-published__list books-published__list--two-col">
+            <li>Anmol Charitara</li>
+            <li>Radhaswami Nit Name</li>
+            <li>Nit Nem Gutka</li>
+            <li>The Path of Salvation (English)</li>
+            <li>Satguru Dhara</li>
+            <li>Satguru Satsang</li>
+            <li>Rekh Per Mekh</li>
+          </ul>
+        </section>
+      </div>
     </div>
     <div id="mediaPanelProgrammes" class="media-panel" role="tabpanel" aria-labelledby="mediaTabProgrammes" hidden>
       <div class="programme-schedule-wrap">
@@ -1783,7 +1929,7 @@
         <h5>Resources</h5>
         <a href="#">Satsang Videos</a>
         <a href="#">Monthly Magazine</a>
-        <a href="#">Downloads</a>
+        <a href="#media">Books Published</a>
         <a href="#">FAQs</a>
       </div>
       <div class="footer-col">
