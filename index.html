@@ -1402,14 +1402,19 @@
       display: flex; align-items: center; gap: 6px;
     }
     .social-btn:hover { border-color: var(--saffron); color: var(--saffron); }
-    .map-placeholder {
-      background: linear-gradient(135deg, rgba(212,98,26,0.08), rgba(200,148,42,0.12));
-      border: 1px solid var(--border); border-radius: 12px;
-      aspect-ratio: 4/3; display: flex; align-items: center;
-      justify-content: center; flex-direction: column; gap: 10px;
-      color: var(--muted); font-size: 0.9rem;
+    .contact-map {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(90, 62, 40, 0.08);
+      background: var(--card-bg);
     }
-    .map-placeholder .map-icon { font-size: 2.5rem; }
+    .contact-map iframe {
+      display: block;
+      width: 100%;
+      height: clamp(280px, 42vw, 450px);
+      border: 0;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -2201,10 +2206,15 @@
         </div>
       </div>
 
-      <div class="map-placeholder">
-        <span class="map-icon">🗺️</span>
-        <span>Dinod Dham, Bhiwani, Haryana</span>
-        <a href="https://www.radhaswamidinod.org/contact-us.html" class="btn-outline" style="margin-top:10px;" target="_blank">View on Map</a>
+      <div class="contact-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3496.5314697196!2d76.04194217614138!3d28.793231976763806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39125dcde1242ccd%3A0x3b94f6802caf51e7!2sRadhaswami%20satsang%20Star%20Temple%20Dinod!5e0!3m2!1sen!2sin!4v1774425017459!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Radhaswami Satsang Star Temple Dinod on Google Maps"></iframe>
       </div>
     </div>
   </div>
