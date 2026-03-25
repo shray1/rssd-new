@@ -604,6 +604,46 @@
       color: var(--muted);
     }
 
+    .lineage-modal--faq .lineage-modal__panel {
+      display: flex;
+      flex-direction: column;
+      max-width: min(780px, 100%);
+    }
+    .lineage-modal--faq .faq-modal__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--warm-dark);
+      text-align: center;
+      margin: 0 42px 22px 0;
+      line-height: 1.25;
+    }
+    .lineage-modal--faq .faq-modal__scroll {
+      overflow-y: auto;
+      max-height: min(68vh, 580px);
+      padding-right: 8px;
+    }
+    .faq-modal-item + .faq-modal-item {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .faq-modal__question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--saffron);
+      margin: 0 0 0.65em;
+      line-height: 1.35;
+    }
+    .faq-modal__answer p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 0.85em;
+    }
+    .faq-modal__answer p:last-child { margin-bottom: 0; }
+
     /* ── PHOTO GALLERY (thumbnails + surface) ── */
     #gallery {
       position: relative;
@@ -1763,6 +1803,36 @@
 <p>Like his other predecessors of the Radhaswami Faith he also told the people that eternal peace can be got in human life and the Radha Swami Faith is the easiest way to get the Peace. He embraced death of his own accord or merged with divine light on Jan. 3, 1997. After him Param Sant Huzur Kanwar Sahib ji Maharaj became the second Sant Satguru of the Radhaswami Satsang Dinod (Bhiwani). Huzur Kanwar Sahib ji Maharaj has built a memorial ('Samadhi Sathal') in the shape of star in Dinod in the memory of his Satguru at the place where the body of Param Sant Tara Chand ji Maharaj was put to ashes. Now thousands of people of India and abroad come to Dinod to bow to the &ldquo;Marvellous Samadhi&rdquo; and fulfill their different ambitions of life. Due to the selfless, devoted life hard work and able guidance of Huzur Kanwar Sahib ji Maharaj Radhaswami Satsang Dinod (Bhiwani) is progressing by leaps and bounds and has got new dimensions in all the fields of the satsang.</p>
 </template>
 
+<div id="faqModal" class="lineage-modal lineage-modal--faq" role="dialog" aria-modal="true" aria-labelledby="faqModalTitle" aria-hidden="true">
+  <div class="lineage-modal__panel">
+    <button type="button" class="lineage-modal__close" aria-label="Close">&times;</button>
+    <h3 id="faqModalTitle" class="faq-modal__heading">Frequently Asked Questions</h3>
+    <div class="faq-modal__scroll">
+      <div class="faq-modal-item">
+        <h4 class="faq-modal__question">What is the True Religion?</h4>
+        <div class="faq-modal__answer">
+          <p>Any religion or faith which treats of rituals and ceremonies and moral principles etc., and does not profess to know, or cannot teach the secrets of real Truth or the Truth of Truths, is a religion built on knowledge and reason or founded on scanty information furnished by revelation of a lower order originated from the genius of the second or third grand divisions.</p>
+          <p>True religion or faith is that which leads a sincere seeker to the region of real Truth, and teaches him the ways and means of traversing the regions where false and untruth and comparative truth governs and of finally reaching the highest and most sublime mansion where nothing but the Truth of Truths dwells and manifests its unrivalled glory in splendid refulgence (White Light) and everlasting joy and happiness.</p>
+        </div>
+      </div>
+      <div class="faq-modal-item">
+        <h4 class="faq-modal__question">What are pain and pleasures?</h4>
+        <div class="faq-modal__answer">
+          <p>Perception by a spirit entity of forcible ejectment of spiritual current, whether partial or total from a mental or material plane which it is occupying, constitutes the sensation of pain.</p>
+          <p>Whereas, perception by a spirit entity of concentration of spiritual current whether partial or total, in a mental or material plane which it is occupying, constitutes the sensation of pleasure.</p>
+        </div>
+      </div>
+      <div class="faq-modal-item">
+        <h4 class="faq-modal__question">Which are good and bad acts?</h4>
+        <div class="faq-modal__answer">
+          <p>All acts including spiritual practice which tends to free the spirit from matter and raise it towards its source are good works. All acts which tend to degrade the spirit by weighing it downwards deeper and deeper into matter are bad work or sin.</p>
+          <p>Also, any action done with a view to help the needy from unselfish motives is good works; and the contrary, bad work in this world.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── MEDIA ── -->
 <section id="media" class="media-bg">
   <div class="section-inner">
@@ -2160,7 +2230,7 @@
         <a href="#media" data-open-media-tab="videos">Satsang Videos</a>
         <a href="#media" data-open-media-tab="magazine">Monthly Magazine</a>
         <a href="#media" data-open-media-tab="downloads">Books Published</a>
-        <a href="#">FAQs</a>
+        <a href="#" id="faqModalOpen">FAQs</a>
       </div>
       <div class="footer-col">
         <h5>Connect</h5>
@@ -2384,6 +2454,39 @@
     modal.addEventListener('click', e => { if (e.target === modal) closeFounderModal(); });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeFounderModal();
+    });
+    modal.querySelector('.lineage-modal__panel').addEventListener('click', e => e.stopPropagation());
+  })();
+
+  (function () {
+    const modal = document.getElementById('faqModal');
+    const openLink = document.getElementById('faqModalOpen');
+    if (!modal || !openLink) return;
+    const closeBtn = modal.querySelector('.lineage-modal__close');
+    if (!closeBtn) return;
+    let lastFocus = null;
+
+    function openFaqModal(e) {
+      if (e) e.preventDefault();
+      lastFocus = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFaqModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    openLink.addEventListener('click', openFaqModal);
+    closeBtn.addEventListener('click', closeFaqModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeFaqModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeFaqModal();
     });
     modal.querySelector('.lineage-modal__panel').addEventListener('click', e => e.stopPropagation());
   })();
