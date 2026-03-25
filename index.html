@@ -2152,14 +2152,14 @@
         <h5>About</h5>
         <a href="#" id="founderModalOpen">The Founder</a>
         <a href="#">About Ashram</a>
-        <a href="#">Lineage</a>
-        <a href="#">Star Monument</a>
+        <a href="#lineage">Lineage</a>
+        <a href="#" id="footerStarMonumentOpen">Star Monument</a>
       </div>
       <div class="footer-col">
         <h5>Resources</h5>
-        <a href="#">Satsang Videos</a>
-        <a href="#">Monthly Magazine</a>
-        <a href="#media">Books Published</a>
+        <a href="#media" data-open-media-tab="videos">Satsang Videos</a>
+        <a href="#media" data-open-media-tab="magazine">Monthly Magazine</a>
+        <a href="#media" data-open-media-tab="downloads">Books Published</a>
         <a href="#">FAQs</a>
       </div>
       <div class="footer-col">
@@ -2210,6 +2210,16 @@
       tab.addEventListener('click', () => {
         const key = tab.dataset.mediaTab;
         if (key) showPanel(key);
+      });
+    });
+
+    document.querySelectorAll('a[data-open-media-tab]').forEach(link => {
+      link.addEventListener('click', e => {
+        const key = link.getAttribute('data-open-media-tab');
+        if (!key || !panelByKey[key]) return;
+        e.preventDefault();
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showPanel(key);
       });
     });
   })();
@@ -2308,12 +2318,15 @@
 
   (function () {
     const modal = document.getElementById('starMonumentModal');
-    const btn = document.getElementById('logoStarMonumentBtn');
-    if (!modal || !btn) return;
+    const logoBtn = document.getElementById('logoStarMonumentBtn');
+    const footerLink = document.getElementById('footerStarMonumentOpen');
+    if (!modal) return;
     const closeBtn = modal.querySelector('.lineage-modal__close');
+    if (!closeBtn) return;
     let lastFocus = null;
 
-    function openStarMonumentModal() {
+    function openStarMonumentModal(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
       lastFocus = document.activeElement;
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
@@ -2328,7 +2341,8 @@
       if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     }
 
-    btn.addEventListener('click', openStarMonumentModal);
+    if (logoBtn) logoBtn.addEventListener('click', openStarMonumentModal);
+    if (footerLink) footerLink.addEventListener('click', openStarMonumentModal);
     closeBtn.addEventListener('click', closeStarMonumentModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeStarMonumentModal(); });
     document.addEventListener('keydown', e => {
