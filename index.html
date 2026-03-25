@@ -1033,7 +1033,13 @@
     /* ── MEDIA ── */
     .media-bg { background: var(--card-bg); }
     .media-tabs {
-      display: flex; gap: 4px; margin-bottom: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 4px 8px;
+      margin-bottom: 36px;
+      width: 100%;
+      max-width: 100%;
       border-bottom: 1px solid var(--border);
     }
     .tab {
@@ -1043,6 +1049,8 @@
       border-bottom: 2px solid transparent; margin-bottom: -1px;
       transition: all 0.2s; cursor: pointer; background: none; border-top: none;
       border-left: none; border-right: none;
+      flex: 0 1 auto;
+      white-space: nowrap;
     }
     .tab.active, .tab:hover { color: var(--saffron); border-bottom-color: var(--saffron); }
     .media-grid {
@@ -1543,6 +1551,12 @@
       section { padding: 60px 5%; }
       .lineage-grid { grid-template-columns: 1fr 1fr; }
       .media-grid { grid-template-columns: 1fr; }
+      .media-tabs { gap: 4px 6px; margin-bottom: 28px; }
+      .media-tabs .tab {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+      }
       .footer-top { grid-template-columns: 1fr; }
       .stats-row { flex-wrap: wrap; }
       .stat { flex: 1 0 40%; }
