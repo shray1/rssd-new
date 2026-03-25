@@ -580,6 +580,30 @@
     .lineage-modal__body p { margin-bottom: 1em; }
     .lineage-modal__body p:last-child { margin-bottom: 0; }
 
+    .lineage-modal--founder .lineage-modal__panel {
+      max-width: min(920px, 100%);
+    }
+    .lineage-modal--founder .lineage-modal__main {
+      max-height: min(70vh, 640px);
+    }
+    .lineage-modal__verse {
+      margin: 1.15em 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--saffron);
+      background: rgba(212, 98, 26, 0.07);
+      font-style: italic;
+    }
+    .lineage-modal__verse p { margin-bottom: 0.45em; }
+    .lineage-modal__verse p:last-child { margin-bottom: 0; }
+    .lineage-modal__verse-translation {
+      margin-top: 0.9em !important;
+      padding-top: 0.9em;
+      border-top: 1px solid var(--border);
+      font-style: normal !important;
+      font-size: 0.89em;
+      color: var(--muted);
+    }
+
     /* ── PHOTO GALLERY (thumbnails + surface) ── */
     #gallery {
       position: relative;
@@ -1701,6 +1725,44 @@
   </div>
 </div>
 
+<div id="founderModal" class="lineage-modal lineage-modal--founder" role="dialog" aria-modal="true" aria-labelledby="founderModalTitle" aria-hidden="true">
+  <div class="lineage-modal__panel">
+    <button type="button" class="lineage-modal__close" aria-label="Close">&times;</button>
+    <div class="lineage-modal__layout">
+      <div class="lineage-modal__aside">
+        <div class="lineage-modal__photo-wrap">
+          <img class="lineage-modal__photo" src="Media/img/Lineage/TaraChand-Maharaj-ji.jpg" alt="Param Sant Tara Chand Ji Maharaj (Bade Maharaj Ji)"/>
+        </div>
+        <h3 id="founderModalTitle" class="lineage-modal__title">Param Sant Tara Chand Ji Maharaj</h3>
+      </div>
+      <div class="lineage-modal__main">
+        <p class="lineage-modal__dates">1925 – 1997 · Founder of Radhaswami Satsang Dinod</p>
+        <div id="founderModalBody" class="lineage-modal__body"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<template id="founderBioTemplate">
+<p>Radhaswami Satsang Dinod (Bhiwani) was established by Param Sant Tara Chand Ji Maharaj in the last decades of twentieth century. Huzur Tara Chand ji was born in the poor family of Ch. Moola Ram ji &amp; Mother Chawli Devi in Dinod (Bhiwani) in 1925. His father was bit careless and unresponsive in family matters thus adding more troubles to family. He met with first tragedy when he was 4-5 days old, when his mother passed away. His grandmother took care of him with inadequate available resources. Her grandmother also expired when he was 4-5 years old. This innocent devotee was left with his unkind father thus adding more disasters on helpless child.</p>
+<p>His father used to send him to jungle to feed pet animals and collect firewood. After coming back from fields, he had to bring water from public tube-well, grind the flour and cook for both of them. At this stage of life he was insulted, disregarded and humiliated which offended him and he could never forgot those wounds. Huzur Maharaj ji's life was full of struggles, because he spent his life in search of God. He remained unmarried and lived a hard life to find the truth. Once he requested for lassi in neighborhood but the lady scolded and threw him out. At several times, he was abused for wearing dirty clothes in satsangs. Once he did laboring for 3 days without eating anything since they had nothing at home to consume, the contractor denied his wages adding salt on wounds. These wounds were aggravating his grievances and it took him to temples &amp; Deras in search of support from Supreme father.</p>
+<p>Only that person can recognize the pain who has suffered it. One can't experience the pain merely by hearing it. Lovable Huzur Satguru Tara Chand Ji Maharaj was a living example of it. HE, himself felt and underwent the sufferings of Jeevas or human creatures and to evade all these, HE went out to find the ultimate peace. There was the requirement of such a remedy which could provide peace to masses. HE started educating himself from his troublesome childhood. Wherever and whenever he found some beneficial knowledge, he adopted that in his life. He went through struggles in every moment, every day/week and months therefore summing up all these; it was a long journey of many years full of adversities. If one comes across hardships on each single step during this period then life becomes thorny. Only a person who has fought against such hard times can imagine and sense it.</p>
+<p>He washed the lotus feet of many sages in order to find ultimate peace and Truth but couldn't found the thing he wished. He went to Agra, Beas and Sirsa and saw the famous places of the Radha Swami Faith. He adopted numerous good things by visiting various centers (Deras) of spiritual and religious taste and practically implemented those lessons in his life. He disregarded the things or bad deeds at the very moment, he didn't like. We can find the biography of Satguru Tara Chand Ji Maharaj in the book named &ldquo;ANMOL JEEVAN CHARITRA &ndash; Precious Life Character&rdquo; and can find the peace, happiness and importance of a human life by reading it.</p>
+<p>After visiting and wandering across many centers of spiritual and religious importance, Ultimately this hunt took him to Armaan Sahab. He went twice to see Huzur Ram Singh Ji Armaan and begged for initiation. On the other side, initially Huzur Armaan Sahab had some reservations about him, thinking how is this young boy? Armaan Sahab asked about Huzur Tara Chand from his cousin from Dinod, that Brother, Nanta &ldquo;A gentleman from your village visited me, his father name is Mularam Jat. How is this boy?&rdquo; Then Nanta said &ndash; &ldquo;Brother, if you find any shortcomings in this boy then I take the complete responsibility of it. He is not an ordinary boy rather HE is a gem&rdquo;. Further Armaan Sahab writes- after discussing this, I came back to my village. I felt that perhaps the dominion of Supreme Master would come in this form. After few days again this boy came to me at Golagarh (A village where Armaan Sahab used to teach in a school).</p>
+<p>On the other hand side, Tara Chand Ji Maharaj Ji had pledged to himself that if this time he doesn't get initiation then He would admit Guru to someone else. But who can deny the pre-determined call of Supreme Master? Everything seemed pre-planned. Third time Armaan Sahab got ready to give initiation but He added 3-4 strict instructions to it. You can read the books &ldquo;Armaan Sagar &amp; Anmol Jeevan Charitra&rdquo; and can identify the secrecy of it.</p>
+<p>After taking initiation, Tara Chand Ji Maharaj restlessly spent days and nights to recite the holy name and sat in meditation for hours and hours. He worked and earned this precious name through rigorous meditation of Radhaswami &ndash; Sahaj Yog. Armaan Sahab became very happy on Tara Chand Ji's achievement and blessed him. He Said</p>
+<div class="lineage-modal__verse">
+<p>Mera Pyara-Pyara Tara, Mera Pyara-Pyara Tara!<br/>Tu khud to Teera, Teeraya tha mujhko bhi Tara!!</p>
+<p class="lineage-modal__verse-translation">{Oh My Lovely &amp; Divine Tara, Oh My Lovely &amp; Divine Tara, Not only you have liberated yourself but you have given liberation to me also}</p>
+</div>
+<p>By observing deep intense and accomplishment of Tara Chand Ji, Armaan Sahab showed the secret letter of his Sant Satguru Maharishi Shivbrat Lal Ji wherein Shivbrat Lal Ji had told Armaan Sahab that you keep on spreading and initiating Radhaswami Naam, My force would come to assist you and that force would receive new heights for Radhaswami Naam.</p>
+<p>Armaan Sahab gave him the secret of Surat-Shabd. Huzur Ji then started delivering spiritual discourses by the blessing of Armaan Sahab and spread the Radhaswami naam. People began calling him Hiranakush because Radhaswami was a new thing for them and they started announcing that Tara Chand doesn't admit the being of Ram (God). Arya Samaji's stood up against him and opposed his movement for 10 days. Huzur Tara Chand Ji then thought of leaving the Dinod village but the strength of Naam granted him determination to stay back in village and In the end opponents had to run away from there. Whenever someone opposed his satsang it grew rapidly in large numbers. He always emphasized on doings rather than sayings. He stated it very evidently that those who just says and don't perform, would cry in the court of Supreme Master.</p>
+<p>Satguru always opens the doors of his divinity and spiritual earnings to the most deserving and qualified disciple. Satguru feels a sense of pride by looking at such an enlightened adherent.</p>
+<p>The widening and extension of Radhaswami Dinod centers across the world has been possible only because of endless blessings, rich divinity and painstaking efforts of Tara Chand Ji Maharaj. We can't define the sacrifices made by Satguru Tara Chand Ji Maharaj Ji into words. He devoted his entire life by mind, body, heart, soul, health and wealth for the welfare of human kind and spread the path of Surat-Sabdh to general public. He showed us the path of salvation by his hard earned experiences moreover he took the distress, sorrows, pains and hardships of jeevas on himself and released them from the cycle of birth and death.</p>
+<p>It's not less than a magic to remain pure &amp; virgin in Kalyug which is witnessing various categories of immorality, wickedness and low thinking. In actual, a happier person thinks about sensual pleasures and a troubled person walk towards God. Satguru Tara Chand Ji Maharaj mentioned at various occasions that &ldquo;Calamities are our best friend who visits us uninvited however easiness/pleasure is our biggest enemy which takes us away from Almighty&rdquo;. Tara chand ji Maharaj Said that Celibacy is God in gross and visible form; Mind is God in subtle form; and Surat is God in causal form. It's not only physical celibacy but mental celibacy which is more important and one can't attain supremacy or accomplishments without it, moreover one can never win any god/goddess and achieve divine bliss without mental celibacy. A person who does not know the art of sensible and controlled living can never ever meet the supreme father.</p>
+<p>Today, Radhaswami Dham Dinod, has got an unique identification in the world and all credit for the same goes to Param Pujay Tara Chand Ji Maharaj Ji. He showed us the path of salvation by his tenacity, perseverance, spiritual practice and sacrifices. In the month of December 1996, he stopped delivering discourses and remained blissful in the practice of Surat-Shabd yog. He always emphasized on doings rather than sayings. He stated it very evidently that those who just says and don't perform, would cry in the court of Supreme Master.</p>
+<p>Like his other predecessors of the Radhaswami Faith he also told the people that eternal peace can be got in human life and the Radha Swami Faith is the easiest way to get the Peace. He embraced death of his own accord or merged with divine light on Jan. 3, 1997. After him Param Sant Huzur Kanwar Sahib ji Maharaj became the second Sant Satguru of the Radhaswami Satsang Dinod (Bhiwani). Huzur Kanwar Sahib ji Maharaj has built a memorial ('Samadhi Sathal') in the shape of star in Dinod in the memory of his Satguru at the place where the body of Param Sant Tara Chand ji Maharaj was put to ashes. Now thousands of people of India and abroad come to Dinod to bow to the &ldquo;Marvellous Samadhi&rdquo; and fulfill their different ambitions of life. Due to the selfless, devoted life hard work and able guidance of Huzur Kanwar Sahib ji Maharaj Radhaswami Satsang Dinod (Bhiwani) is progressing by leaps and bounds and has got new dimensions in all the fields of the satsang.</p>
+</template>
+
 <!-- ── MEDIA ── -->
 <section id="media" class="media-bg">
   <div class="section-inner">
@@ -2088,7 +2150,7 @@
       </div>
       <div class="footer-col">
         <h5>About</h5>
-        <a href="#">The Founder</a>
+        <a href="#" id="founderModalOpen">The Founder</a>
         <a href="#">About Ashram</a>
         <a href="#">Lineage</a>
         <a href="#">Star Monument</a>
@@ -2271,6 +2333,43 @@
     modal.addEventListener('click', e => { if (e.target === modal) closeStarMonumentModal(); });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeStarMonumentModal();
+    });
+    modal.querySelector('.lineage-modal__panel').addEventListener('click', e => e.stopPropagation());
+  })();
+
+  (function () {
+    const modal = document.getElementById('founderModal');
+    const openLink = document.getElementById('founderModalOpen');
+    const bodyEl = document.getElementById('founderModalBody');
+    const tpl = document.getElementById('founderBioTemplate');
+    if (!modal || !openLink || !bodyEl || !tpl) return;
+    if (!bodyEl.hasChildNodes()) {
+      bodyEl.appendChild(tpl.content.cloneNode(true));
+    }
+    const closeBtn = modal.querySelector('.lineage-modal__close');
+    let lastFocus = null;
+
+    function openFounderModal(e) {
+      if (e) e.preventDefault();
+      lastFocus = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFounderModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    openLink.addEventListener('click', openFounderModal);
+    closeBtn.addEventListener('click', closeFounderModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeFounderModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeFounderModal();
     });
     modal.querySelector('.lineage-modal__panel').addEventListener('click', e => e.stopPropagation());
   })();
