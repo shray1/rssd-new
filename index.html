@@ -100,6 +100,34 @@
     }
     .nav-btn:hover { background: var(--gold) !important; }
 
+    .nav-programme-trigger {
+      display: none;
+      padding: 6px 12px;
+      margin: 0 2px;
+      font-family: inherit;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--saffron);
+      background: rgba(212, 98, 26, 0.08);
+      border: 1px solid rgba(212, 98, 26, 0.28);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      align-items: center;
+      justify-content: center;
+    }
+    body.hero-programme-was-dismissed .nav-programme-trigger {
+      display: inline-flex;
+    }
+    .nav-programme-trigger:hover {
+      background: rgba(212, 98, 26, 0.14);
+      border-color: rgba(212, 98, 26, 0.45);
+      color: var(--warm-dark);
+    }
+
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       cursor: pointer; padding: 6px;
@@ -1364,6 +1392,11 @@
       text-decoration: none; transition: color 0.2s;
     }
     .mobile-menu a:hover { color: var(--saffron); }
+    .mobile-menu .nav-programme-trigger {
+      font-size: 0.72rem;
+      padding: 10px 18px;
+      margin-top: 4px;
+    }
     .close-btn {
       position: absolute; top: 24px; right: 5%;
       font-size: 1.8rem; cursor: pointer; color: var(--mid);
@@ -1431,6 +1464,7 @@
       <a href="#pillars">Faith</a>
       <a href="#lineage">Lineage</a>
       <a href="#media">Media</a>
+      <button type="button" class="nav-programme-trigger" data-show-hero-programme aria-label="Show upcoming programme in hero">Upcoming Programme</button>
       <a href="#contact" class="nav-btn">Contact</a>
     </nav>
     <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
@@ -1446,6 +1480,7 @@
   <a href="#pillars" onclick="document.getElementById('mobileMenu').classList.remove('open')">Faith</a>
   <a href="#lineage" onclick="document.getElementById('mobileMenu').classList.remove('open')">Lineage</a>
   <a href="#media" onclick="document.getElementById('mobileMenu').classList.remove('open')">Media</a>
+  <button type="button" class="nav-programme-trigger" data-show-hero-programme aria-label="Show upcoming programme in hero">Upcoming Programme</button>
   <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
 </div>
 
@@ -2476,12 +2511,35 @@
 
   (function () {
     var card = document.getElementById('heroProgrammeCard');
-    var btn = document.getElementById('heroProgrammeDismiss');
+    var dismissBtn = document.getElementById('heroProgrammeDismiss');
     var inner = document.getElementById('heroInner');
-    if (!card || !inner || !btn) return;
-    btn.addEventListener('click', function () {
+    var mobileMenu = document.getElementById('mobileMenu');
+    var showTriggers = document.querySelectorAll('[data-show-hero-programme]');
+    if (!card || !inner) return;
+
+    function hideProgrammeCard() {
       card.classList.add('is-dismissed');
       inner.classList.add('hero-inner--no-programme-card');
+      document.body.classList.add('hero-programme-was-dismissed');
+    }
+
+    function showProgrammeCard() {
+      card.classList.remove('is-dismissed');
+      inner.classList.remove('hero-inner--no-programme-card');
+      document.body.classList.remove('hero-programme-was-dismissed');
+      if (mobileMenu) mobileMenu.classList.remove('open');
+      requestAnimationFrame(function () {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+
+    if (dismissBtn) dismissBtn.addEventListener('click', hideProgrammeCard);
+
+    showTriggers.forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        showProgrammeCard();
+      });
     });
   })();
 </script>
