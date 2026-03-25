@@ -23,7 +23,10 @@
       --border:    rgba(200,148,42,0.25);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* offset fixed header for #about, #contact, etc. */
+    }
 
     body {
       font-family: 'Jost', sans-serif;
@@ -2203,7 +2206,7 @@
     </p>
     <div class="cta-grid">
       <a href="#contact" class="btn-white">Visit the Ashram</a>
-      <a href="#" class="btn-ghost-white">View Programmes</a>
+      <a href="#media" class="btn-ghost-white" data-open-media-tab="programmes">View Programmes</a>
     </div>
   </div>
 </div>
@@ -2290,9 +2293,9 @@
       </div>
       <div class="footer-col">
         <h5>Connect</h5>
-        <a href="#">Programmes</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Photo Gallery</a>
+        <a href="#media" data-open-media-tab="programmes">Programmes</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#gallery">Photo Gallery</a>
         <a href="#">Satguru Kripa</a>
       </div>
     </div>
