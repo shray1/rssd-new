@@ -522,6 +522,60 @@
       z-index: 1;
     }
 
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 26px 0 6px;
+      padding: 0;
+      list-style: none;
+    }
+    .gallery-filter {
+      margin: 0;
+      padding: 0;
+    }
+    .gallery-filter__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(200, 148, 42, 0.35);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--mid);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    }
+    .gallery-filter__btn:hover {
+      border-color: rgba(212, 98, 26, 0.4);
+      color: var(--deep);
+    }
+    .gallery-filter__btn.is-active {
+      background: var(--saffron);
+      border-color: transparent;
+      color: var(--white);
+      box-shadow: 0 4px 18px rgba(212, 98, 26, 0.28);
+    }
+    .gallery-filter__btn:focus-visible {
+      outline: 2px solid var(--saffron);
+      outline-offset: 3px;
+    }
+    .gallery-empty {
+      margin: 0;
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--mid);
+      opacity: 0.85;
+      min-width: min(100%, 280px);
+    }
+
     .gallery-slider-wrap {
       display: flex;
       align-items: center;
@@ -591,6 +645,10 @@
       margin: 0;
       justify-content: space-between;
       box-sizing: border-box;
+    }
+    #gallery .gallery-slider-wrap .gallery-grid:has(.gallery-empty) {
+      justify-content: center;
+      min-width: 100%;
     }
     #gallery .gallery-slider-wrap .gallery-cell {
       flex: 0 0 108px;
@@ -1399,7 +1457,7 @@
       </div>
       <div class="about-visual">
         <div class="about-img-box" style="padding:0; overflow:hidden;">
-          <img src="Media/img/Portraits/Maharaji-Portrait9.jpeg" alt="Satguru darshan"/>
+          <img src="Media/img/Maharaj-Ji/Maharaji-Portrait9.jpeg" alt="Satguru darshan"/>
         </div>
         <!-- <div class="about-float-card">
           <div class="fc-label">Headquarters</div>
@@ -1825,66 +1883,16 @@
     <span class="section-tag">Photo Gallery</span>
     <h2 class="section-title">Darshan of the Satguru</h2>
     <p class="section-desc">Moments of grace, devotion and divine presence from Satsang gatherings at Dinod Dham.</p>
+    <ul class="gallery-filters" role="tablist" aria-label="Gallery categories">
+      <li class="gallery-filter"><button type="button" class="gallery-filter__btn is-active" role="tab" aria-selected="true" data-gallery-cat="maharaj-ji">Maharaj Ji</button></li>
+      <li class="gallery-filter"><button type="button" class="gallery-filter__btn" role="tab" aria-selected="false" data-gallery-cat="bade-maharaj-ji">Bade Maharaj Ji</button></li>
+      <li class="gallery-filter"><button type="button" class="gallery-filter__btn" role="tab" aria-selected="false" data-gallery-cat="ashram">Ashram</button></li>
+      <li class="gallery-filter"><button type="button" class="gallery-filter__btn" role="tab" aria-selected="false" data-gallery-cat="newspaper-clipings">Newspaper clippings</button></li>
+    </ul>
     <div class="gallery-slider-wrap">
       <button type="button" class="gallery-slider__btn gallery-slider__btn--prev" aria-label="Previous thumbnails">&#8249;</button>
-      <div class="gallery-slider__viewport" id="gallerySliderViewport" role="region" aria-label="Portrait thumbnails" tabindex="0">
-        <div class="gallery-grid">
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 1 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait1.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 2 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait2.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 3 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait3.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 4 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait4.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 5 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait5.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 6 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait6.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 7 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait7.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 8 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait8.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 9 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait9.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 10 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait10.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-      <div class="gallery-cell">
-        <button type="button" class="gallery-thumb" aria-label="Open portrait 11 of 11">
-          <img src="Media/img/Portraits/Maharaji-Portrait11.jpeg" alt="Darshan of the Satguru" loading="lazy">
-        </button>
-      </div>
-        </div>
+      <div class="gallery-slider__viewport" id="gallerySliderViewport" role="region" aria-label="Gallery thumbnails" tabindex="0">
+        <div class="gallery-grid" id="galleryGrid"></div>
       </div>
       <button type="button" class="gallery-slider__btn gallery-slider__btn--next" aria-label="Next thumbnails">&#8250;</button>
     </div>
@@ -2161,43 +2169,99 @@
   })();
 
   (function () {
+    const GALLERY_DATA = {
+      'maharaj-ji': {
+        label: 'Maharaj Ji',
+        images: Array.from({ length: 11 }, (_, i) => ({
+          src: 'Media/img/Maharaj-Ji/Maharaji-Portrait' + (i + 1) + '.jpeg',
+          alt: 'Darshan of the Satguru'
+        }))
+      },
+      'bade-maharaj-ji': {
+        label: 'Bade Maharaj Ji',
+        images: []
+      },
+      ashram: {
+        label: 'Ashram',
+        images: []
+      },
+      'newspaper-clipings': {
+        label: 'Newspaper clippings',
+        images: []
+      }
+    };
+
     const section = document.getElementById('gallery');
     const lb = document.getElementById('galleryLightbox');
-    if (!section || !lb) return;
+    const grid = document.getElementById('galleryGrid');
+    const viewport = document.getElementById('gallerySliderViewport');
+    if (!section || !lb || !grid || !viewport) return;
 
     const imgEl = document.getElementById('galleryLightboxImg');
     const counterEl = document.getElementById('galleryLightboxCounter');
     const btnClose = lb.querySelector('.gallery-lightbox__close');
-    const btnPrev = lb.querySelector('.gallery-lightbox__nav--prev');
-    const btnNext = lb.querySelector('.gallery-lightbox__nav--next');
-    const thumbs = section.querySelectorAll('.gallery-thumb');
+    const btnLbPrev = lb.querySelector('.gallery-lightbox__nav--prev');
+    const btnLbNext = lb.querySelector('.gallery-lightbox__nav--next');
+    const btnScrollPrev = section.querySelector('.gallery-slider__btn--prev');
+    const btnScrollNext = section.querySelector('.gallery-slider__btn--next');
+    const filterButtons = section.querySelectorAll('.gallery-filter__btn');
 
-    const items = Array.from(thumbs).map(btn => {
-      const im = btn.querySelector('img');
-      return im ? { src: im.getAttribute('src') || '', alt: im.getAttribute('alt') || 'Darshan' } : null;
-    }).filter(Boolean);
-
-    if (!items.length) return;
-
+    let items = [];
     let index = 0;
     let lastFocus = null;
     let touchStartX = 0;
 
-    function render() {
-      const item = items[index];
-      imgEl.src = item.src;
-      imgEl.alt = item.alt;
-      counterEl.textContent = (index + 1) + ' / ' + items.length;
+    const tolerance = 3;
+
+    function maxScroll() {
+      return Math.max(0, viewport.scrollWidth - viewport.clientWidth);
     }
 
-    function open(at) {
-      index = ((at % items.length) + items.length) % items.length;
-      lastFocus = document.activeElement;
-      render();
-      lb.classList.add('is-open');
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      btnClose.focus();
+    function updateArrows() {
+      if (!btnScrollPrev || !btnScrollNext) return;
+      const max = maxScroll();
+      const empty = !items.length;
+      btnScrollPrev.disabled = empty || viewport.scrollLeft <= tolerance;
+      btnScrollNext.disabled = empty || max <= tolerance || viewport.scrollLeft >= max - tolerance;
+    }
+
+    function stepScroll() {
+      return Math.max(100, Math.floor(viewport.clientWidth * 0.85));
+    }
+
+    function goScroll(direction) {
+      const max = maxScroll();
+      let target = viewport.scrollLeft + direction * stepScroll();
+      target = Math.max(0, Math.min(max, target));
+      viewport.scrollLeft = target;
+    }
+
+    function escapeAttr(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    }
+
+    function renderGrid(data) {
+      viewport.setAttribute('aria-label', data.label + ' thumbnails');
+      var images = data.images;
+      if (!images.length) {
+        grid.innerHTML = '<p class="gallery-empty" role="status">No photographs in this album yet.</p>';
+        return;
+      }
+      grid.innerHTML = images.map(function (img, i) {
+        const n = i + 1;
+        const total = images.length;
+        return '<div class="gallery-cell"><button type="button" class="gallery-thumb" data-gallery-index="' + i +
+          '" aria-label="Open image ' + n + ' of ' + total + '"><img src="' + escapeAttr(img.src) + '" alt="' +
+          escapeAttr(img.alt) + '" loading="lazy"></button></div>';
+      }).join('');
+    }
+
+    function setActiveFilter(key) {
+      filterButtons.forEach(function (btn) {
+        const on = btn.getAttribute('data-gallery-cat') === key;
+        btn.classList.toggle('is-active', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
     }
 
     function close() {
@@ -2206,54 +2270,105 @@
       imgEl.removeAttribute('src');
       imgEl.alt = '';
       document.body.style.overflow = '';
+      btnLbPrev.style.visibility = '';
+      btnLbNext.style.visibility = '';
       if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     }
 
+    function applyCategory(key) {
+      const data = GALLERY_DATA[key];
+      if (!data) return;
+      if (lb.classList.contains('is-open')) close();
+      items = data.images;
+      index = 0;
+      renderGrid(data);
+      setActiveFilter(key);
+      viewport.scrollLeft = 0;
+      requestAnimationFrame(updateArrows);
+    }
+
+    function renderLightbox() {
+      if (!items.length) return;
+      const item = items[index];
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      counterEl.textContent = (index + 1) + ' / ' + items.length;
+      var single = items.length <= 1;
+      btnLbPrev.disabled = single;
+      btnLbNext.disabled = single;
+      btnLbPrev.style.visibility = single ? 'hidden' : '';
+      btnLbNext.style.visibility = single ? 'hidden' : '';
+    }
+
+    function open(at) {
+      if (!items.length) return;
+      index = ((at % items.length) + items.length) % items.length;
+      lastFocus = document.activeElement;
+      renderLightbox();
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+    }
+
     function prev() {
+      if (!items.length) return;
       index = (index - 1 + items.length) % items.length;
-      render();
+      renderLightbox();
     }
 
     function next() {
+      if (!items.length) return;
       index = (index + 1) % items.length;
-      render();
+      renderLightbox();
     }
 
-    thumbs.forEach((btn, i) => {
-      btn.addEventListener('click', () => open(i));
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-gallery-cat');
+        if (key) applyCategory(key);
+      });
+    });
+
+    grid.addEventListener('click', function (e) {
+      var thumb = e.target.closest('.gallery-thumb');
+      if (!thumb || !grid.contains(thumb)) return;
+      var i = parseInt(thumb.getAttribute('data-gallery-index'), 10);
+      if (!Number.isNaN(i)) open(i);
     });
 
     btnClose.addEventListener('click', close);
-    btnPrev.addEventListener('click', e => { e.stopPropagation(); prev(); });
-    btnNext.addEventListener('click', e => { e.stopPropagation(); next(); });
+    btnLbPrev.addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+    btnLbNext.addEventListener('click', function (e) { e.stopPropagation(); next(); });
 
-    lb.addEventListener('click', e => {
+    lb.addEventListener('click', function (e) {
       if (e.target === lb) close();
     });
 
-    imgEl.addEventListener('click', e => e.stopPropagation());
+    imgEl.addEventListener('click', function (e) { e.stopPropagation(); });
 
-    lb.querySelector('.gallery-lightbox__stage').addEventListener('click', e => e.stopPropagation());
+    lb.querySelector('.gallery-lightbox__stage').addEventListener('click', function (e) { e.stopPropagation(); });
 
-    imgEl.addEventListener('touchstart', e => {
+    imgEl.addEventListener('touchstart', function (e) {
       if (e.changedTouches.length === 1) touchStartX = e.changedTouches[0].clientX;
     }, { passive: true });
 
-    imgEl.addEventListener('touchend', e => {
-      if (e.changedTouches.length !== 1) return;
-      const dx = e.changedTouches[0].clientX - touchStartX;
+    imgEl.addEventListener('touchend', function (e) {
+      if (!items.length || e.changedTouches.length !== 1) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
       if (Math.abs(dx) < 50) return;
       if (dx < 0) next();
       else prev();
     }, { passive: true });
 
-    document.addEventListener('keydown', e => {
+    document.addEventListener('keydown', function (e) {
       if (!lb.classList.contains('is-open')) return;
       if (e.key === 'Escape') {
         e.preventDefault();
         close();
         return;
       }
+      if (items.length <= 1) return;
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
         prev();
@@ -2263,58 +2378,28 @@
         next();
       }
     });
-  })();
 
-  (function () {
-    const viewport = document.getElementById('gallerySliderViewport');
-    const section = document.getElementById('gallery');
-    if (!viewport || !section) return;
-    const btnPrev = section.querySelector('.gallery-slider__btn--prev');
-    const btnNext = section.querySelector('.gallery-slider__btn--next');
-    if (!btnPrev || !btnNext) return;
-
-    const tolerance = 3;
-
-    function maxScroll() {
-      return Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-    }
-
-    function updateArrows() {
-      const max = maxScroll();
-      btnPrev.disabled = viewport.scrollLeft <= tolerance;
-      btnNext.disabled = max <= tolerance || viewport.scrollLeft >= max - tolerance;
-    }
-
-    function step() {
-      return Math.max(100, Math.floor(viewport.clientWidth * 0.85));
-    }
-
-    function go(direction) {
-      const max = maxScroll();
-      let target = viewport.scrollLeft + direction * step();
-      target = Math.max(0, Math.min(max, target));
-      viewport.scrollLeft = target;
-    }
-
-    btnPrev.addEventListener('click', () => go(-1));
-    btnNext.addEventListener('click', () => go(1));
-    viewport.addEventListener('scroll', updateArrows, { passive: true });
-    window.addEventListener('resize', updateArrows);
-    if (typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(updateArrows).observe(viewport);
-    }
-    updateArrows();
-
-    viewport.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        go(-1);
+    if (btnScrollPrev && btnScrollNext) {
+      btnScrollPrev.addEventListener('click', function () { goScroll(-1); });
+      btnScrollNext.addEventListener('click', function () { goScroll(1); });
+      viewport.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(updateArrows).observe(viewport);
       }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        go(1);
-      }
-    });
+      viewport.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          goScroll(-1);
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          goScroll(1);
+        }
+      });
+    }
+
+    applyCategory('maharaj-ji');
   })();
 </script>
 </body>
