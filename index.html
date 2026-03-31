@@ -37,6 +37,7 @@
       color: var(--text);
       font-weight: 300;
       line-height: 1.7;
+      overflow-x: hidden;
     }
 
     /* ── HEADER / NAV ── */
@@ -1662,6 +1663,7 @@
       .hamburger { display: flex; }
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-card { margin-top: 0; }
+      .hero-bg-portrait.hide-mobile { display: none; }
       .hero-bg-portrait::before {
         background: linear-gradient(to right,
             var(--cream) 0%,
@@ -2578,6 +2580,13 @@
    */
   var DARSHAN_FULL_IMAGE = false;
 
+  /**
+   * ─── HERO BACKGROUND IMAGE ON MOBILE ───
+   * Set to true  → show the Maharaj Ji portrait behind the hero text on mobile
+   * Set to false → hide it on mobile for a clean text-only layout
+   */
+  var HERO_MOBILE_BG_IMAGE = false;
+
   (function () {
     var el = document.querySelector('.darshan');
     if (el) {
@@ -2586,6 +2595,10 @@
       } else {
         el.classList.remove('darshan--contain');
       }
+    }
+    var bg = document.querySelector('.hero-bg-portrait');
+    if (bg && !HERO_MOBILE_BG_IMAGE) {
+      bg.classList.add('hide-mobile');
     }
   })();
 
