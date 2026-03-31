@@ -221,6 +221,12 @@
       background: rgba(250,246,239,0.85);
       transform: scale(1.4);
     }
+    .darshan-slide[data-view="desktop"] { display: block; }
+    .darshan-slide[data-view="mobile"]  { display: none; }
+    @media (max-width: 900px) {
+      .darshan-slide[data-view="desktop"] { display: none; }
+      .darshan-slide[data-view="mobile"]  { display: block; }
+    }
     .darshan-scroll-hint {
       display: flex;
       flex-direction: column;
@@ -1801,67 +1807,31 @@
 <!-- ── DARSHAN (immersive slideshow) ── -->
 <section class="darshan" id="darshan">
   <div class="darshan-slides">
-    <div class="darshan-slide active">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait1.jpeg" alt="" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait1.jpeg" alt="Maharaj Ji" fetchpriority="high" decoding="async" /></div>
+    <div class="darshan-slide" data-view="desktop">
+      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait8.jpeg" alt="" decoding="async" /></div>
+      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait8.jpeg" alt="Maharaj Ji" fetchpriority="high" decoding="async" /></div>
     </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait2.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait2.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
-    </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait3.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait3.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
-    </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait4.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait4.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
-    </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait5.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait5.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
-    </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait6.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait6.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
-    </div>
-    <div class="darshan-slide">
+    <div class="darshan-slide" data-view="desktop">
       <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait7.jpeg" alt="" loading="lazy" decoding="async" /></div>
       <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait7.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait8.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait8.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
+    <div class="darshan-slide" data-view="mobile">
+      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait2.jpeg" alt="" decoding="async" /></div>
+      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait2.jpeg" alt="Maharaj Ji" decoding="async" /></div>
     </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait9.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait9.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
+    <div class="darshan-slide" data-view="mobile">
+      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait4.jpeg" alt="" loading="lazy" decoding="async" /></div>
+      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait4.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
     </div>
     <div class="darshan-slide">
       <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait10.jpeg" alt="" loading="lazy" decoding="async" /></div>
       <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait10.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
     </div>
-    <div class="darshan-slide">
-      <div class="darshan-slide-bg"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait11.jpeg" alt="" loading="lazy" decoding="async" /></div>
-      <div class="darshan-slide-main"><img src="Media/img/Maharaj-Ji/Maharaji-Portrait11.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" /></div>
-    </div>
   </div>
   <div class="darshan-vignette"></div>
   <div class="darshan-bottom">
     <div class="darshan-caption">Satguru Maharaj Ji</div>
-    <div class="darshan-dots" id="darshanDots">
-      <button class="darshan-dot active" aria-label="Image 1"></button>
-      <button class="darshan-dot" aria-label="Image 2"></button>
-      <button class="darshan-dot" aria-label="Image 3"></button>
-      <button class="darshan-dot" aria-label="Image 4"></button>
-      <button class="darshan-dot" aria-label="Image 5"></button>
-      <button class="darshan-dot" aria-label="Image 6"></button>
-      <button class="darshan-dot" aria-label="Image 7"></button>
-      <button class="darshan-dot" aria-label="Image 8"></button>
-      <button class="darshan-dot" aria-label="Image 9"></button>
-      <button class="darshan-dot" aria-label="Image 10"></button>
-      <button class="darshan-dot" aria-label="Image 11"></button>
-    </div>
+    <div class="darshan-dots" id="darshanDots"></div>
     <div class="darshan-scroll-hint">
       <span>Scroll</span>
       <div class="darshan-scroll-arrow"></div>
@@ -3116,12 +3086,38 @@
   })();
 
   (function () {
-    var slides = document.querySelectorAll('.darshan-slide');
-    var dots = document.querySelectorAll('.darshan-dot');
-    if (!slides.length) return;
-    var current = 0;
-    var total = slides.length;
+    var dotsContainer = document.getElementById('darshanDots');
+    if (!dotsContainer) return;
     var INTERVAL = 4500;
+    var slides, dots, current, total, timer;
+
+    function getVisibleSlides() {
+      var all = document.querySelectorAll('.darshan-slide');
+      var visible = [];
+      for (var i = 0; i < all.length; i++) {
+        if (getComputedStyle(all[i]).display !== 'none') visible.push(all[i]);
+      }
+      return visible;
+    }
+
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      dots = [];
+      for (var i = 0; i < total; i++) {
+        var btn = document.createElement('button');
+        btn.className = 'darshan-dot' + (i === 0 ? ' active' : '');
+        btn.setAttribute('aria-label', 'Image ' + (i + 1));
+        btn.addEventListener('click', (function (idx) {
+          return function () {
+            clearInterval(timer);
+            goTo(idx);
+            timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
+          };
+        })(i));
+        dotsContainer.appendChild(btn);
+        dots.push(btn);
+      }
+    }
 
     function goTo(idx) {
       slides[current].classList.remove('active');
@@ -3131,15 +3127,23 @@
       dots[current].classList.add('active');
     }
 
-    var timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
+    function init() {
+      clearInterval(timer);
+      if (slides) {
+        for (var i = 0; i < slides.length; i++) slides[i].classList.remove('active');
+      }
+      slides = getVisibleSlides();
+      total = slides.length;
+      if (!total) return;
+      current = 0;
+      slides[0].classList.add('active');
+      buildDots();
+      timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
+    }
 
-    dots.forEach(function (dot, i) {
-      dot.addEventListener('click', function () {
-        clearInterval(timer);
-        goTo(i);
-        timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
-      });
-    });
+    init();
+    var mq = window.matchMedia('(max-width: 900px)');
+    mq.addEventListener('change', init);
   })();
 </script>
 
