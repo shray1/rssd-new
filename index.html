@@ -144,6 +144,96 @@
       transition: all 0.3s;
     }
 
+    /* ── DARSHAN (immersive slideshow) ── */
+    .darshan {
+      position: relative;
+      width: 100%; height: 100vh;
+      overflow: hidden;
+      background: #0A0604;
+    }
+    .darshan-slides {
+      position: absolute; inset: 0;
+    }
+    .darshan-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 1.6s ease;
+    }
+    .darshan-slide.active { opacity: 1; }
+    .darshan-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .darshan-vignette {
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at center, transparent 40%, rgba(10,6,4,0.55) 100%),
+        linear-gradient(to bottom, rgba(10,6,4,0.15) 0%, transparent 15%, transparent 70%, rgba(10,6,4,0.6) 100%);
+    }
+    .darshan-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 36px;
+      gap: 18px;
+    }
+    .darshan-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: rgba(250,246,239,0.7);
+      text-transform: uppercase;
+    }
+    .darshan-dots {
+      display: flex; gap: 10px;
+    }
+    .darshan-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(250,246,239,0.3);
+      border: none; padding: 0;
+      cursor: pointer;
+      transition: background 0.4s, transform 0.4s;
+    }
+    .darshan-dot.active {
+      background: rgba(250,246,239,0.85);
+      transform: scale(1.35);
+    }
+    .darshan-scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: darshanBounce 2.4s ease-in-out infinite;
+    }
+    .darshan-scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,246,239,0.35);
+    }
+    .darshan-scroll-arrow {
+      width: 18px; height: 18px;
+      border-right: 1.5px solid rgba(250,246,239,0.35);
+      border-bottom: 1.5px solid rgba(250,246,239,0.35);
+      transform: rotate(45deg);
+      margin-top: -6px;
+    }
+    @keyframes darshanBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+    @media (max-width: 600px) {
+      .darshan-caption { font-size: 0.9rem; letter-spacing: 0.12em; }
+      .darshan-bottom { padding-bottom: 28px; }
+    }
+
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
@@ -1692,6 +1782,34 @@
   <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
 </div>
 
+<!-- ── DARSHAN (immersive slideshow) ── -->
+<section class="darshan" id="darshan">
+  <div class="darshan-slides">
+    <div class="darshan-slide active">
+      <img src="Media/img/Maharaj-Ji/Maharaji-Portrait5.jpeg" alt="Maharaj Ji" fetchpriority="high" decoding="async" />
+    </div>
+    <div class="darshan-slide">
+      <img src="Media/img/Maharaj-Ji/Maharaji-Portrait6.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" />
+    </div>
+    <div class="darshan-slide">
+      <img src="Media/img/Maharaj-Ji/Maharaji-Portrait7.jpeg" alt="Maharaj Ji" loading="lazy" decoding="async" />
+    </div>
+  </div>
+  <div class="darshan-vignette"></div>
+  <div class="darshan-bottom">
+    <div class="darshan-caption">Satguru Maharaj Ji</div>
+    <div class="darshan-dots" id="darshanDots">
+      <button class="darshan-dot active" aria-label="Image 1"></button>
+      <button class="darshan-dot" aria-label="Image 2"></button>
+      <button class="darshan-dot" aria-label="Image 3"></button>
+    </div>
+    <div class="darshan-scroll-hint">
+      <span>Scroll</span>
+      <div class="darshan-scroll-arrow"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-bg-portrait">
@@ -2934,6 +3052,33 @@
       el.addEventListener('click', function (e) {
         e.preventDefault();
         showProgrammeCard();
+      });
+    });
+  })();
+
+  (function () {
+    var slides = document.querySelectorAll('.darshan-slide');
+    var dots = document.querySelectorAll('.darshan-dot');
+    if (!slides.length) return;
+    var current = 0;
+    var total = slides.length;
+    var INTERVAL = 4500;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (idx + total) % total;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    var timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () {
+        clearInterval(timer);
+        goTo(i);
+        timer = setInterval(function () { goTo(current + 1); }, INTERVAL);
       });
     });
   })();
