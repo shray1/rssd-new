@@ -1580,6 +1580,63 @@
     }
     .hero-content { animation: fadeUp 0.8s ease both; }
     .hero-card     { animation: fadeUp 0.8s 0.2s ease both; }
+
+    /* ── FONT SIZE CONTROL ── */
+    .font-size-ctrl {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--warm-dark);
+      border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(28,19,9,0.25), 0 0 0 1px rgba(200,148,42,0.15);
+      padding: 4px;
+      transition: opacity 0.3s, transform 0.3s;
+      opacity: 0.75;
+    }
+    .font-size-ctrl:hover { opacity: 1; }
+    .font-size-ctrl button {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border: none; border-radius: 50%;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      -webkit-user-select: none; user-select: none;
+    }
+    .font-size-ctrl button:hover {
+      background: rgba(250,246,239,0.12);
+      color: var(--gold);
+    }
+    .font-size-ctrl button:active {
+      background: rgba(250,246,239,0.2);
+    }
+    .font-size-ctrl .fs-decrease { font-size: 0.78rem; }
+    .font-size-ctrl .fs-increase { font-size: 1.05rem; }
+    .font-size-ctrl .fs-reset {
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+      width: auto;
+      padding: 0 6px;
+      color: rgba(250,246,239,0.45);
+      border-radius: 999px;
+    }
+    .font-size-ctrl .fs-reset:hover { color: var(--gold); }
+    .font-size-ctrl .fs-divider {
+      width: 1px; height: 18px;
+      background: rgba(250,246,239,0.12);
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .font-size-ctrl { bottom: 16px; right: 16px; }
+      .font-size-ctrl button { width: 32px; height: 32px; }
+    }
   </style>
 </head>
 <body id="top">
@@ -2865,6 +2922,33 @@
         showProgrammeCard();
       });
     });
+  })();
+</script>
+
+<!-- ── FONT SIZE CONTROL ── -->
+<div class="font-size-ctrl" aria-label="Adjust font size" role="group">
+  <button type="button" class="fs-decrease" id="fsDecrease" aria-label="Decrease font size">A−</button>
+  <span class="fs-divider"></span>
+  <button type="button" class="fs-reset" id="fsReset" aria-label="Reset font size">Reset</button>
+  <span class="fs-divider"></span>
+  <button type="button" class="fs-increase" id="fsIncrease" aria-label="Increase font size">A+</button>
+</div>
+<script>
+  (function () {
+    var MIN = 87.5, MAX = 137.5, STEP = 12.5, DEFAULT = 100;
+    var key = 'rssd-font-pct';
+    var pct = parseFloat(localStorage.getItem(key)) || DEFAULT;
+
+    function apply(v) {
+      pct = Math.min(MAX, Math.max(MIN, v));
+      document.documentElement.style.fontSize = pct + '%';
+      localStorage.setItem(key, pct);
+    }
+
+    apply(pct);
+    document.getElementById('fsDecrease').addEventListener('click', function () { apply(pct - STEP); });
+    document.getElementById('fsIncrease').addEventListener('click', function () { apply(pct + STEP); });
+    document.getElementById('fsReset').addEventListener('click', function () { apply(DEFAULT); });
   })();
 </script>
 </body>
