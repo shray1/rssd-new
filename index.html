@@ -1271,6 +1271,40 @@
       flex-shrink: 0;
     }
     .sant-sandesh-list a:hover .pdf-label { color: var(--light-mid); }
+
+    /* ── MAGAZINE YEAR FILTER ── */
+    .magazine-years {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .magazine-year {
+      padding: 7px 18px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .magazine-year:hover {
+      color: var(--saffron);
+      border-color: rgba(212, 98, 26, 0.35);
+      background: rgba(212, 98, 26, 0.05);
+    }
+    .magazine-year.active {
+      color: var(--white);
+      background: var(--saffron);
+      border-color: var(--saffron);
+    }
+    .magazine-group { display: none; }
+    .magazine-group.active { display: block; }
+
     .media-panel-placeholder {
       font-size: 0.95rem;
       color: var(--muted);
@@ -2188,33 +2222,50 @@
     </div>
     </div>
     <div id="mediaPanelMagazine" class="media-panel" role="tabpanel" aria-labelledby="mediaTabMagazine" hidden>
-      <p class="media-panel-intro">Sant Sandesh — monthly magazine. Select an issue to open the PDF in a new tab.</p>
-      <ul class="sant-sandesh-list">
-        <li>
-          <a href="Media/Sant-Sandesh/Sant-Sandesh1.pdf" target="_blank" rel="noopener noreferrer">
-            <span>Sant Sandesh — Issue 1</span>
-            <span class="pdf-label">PDF</span>
-          </a>
-        </li>
-        <li>
-          <a href="Media/Sant-Sandesh/Sant-Sandesh2.pdf" target="_blank" rel="noopener noreferrer">
-            <span>Sant Sandesh — Issue 2</span>
-            <span class="pdf-label">PDF</span>
-          </a>
-        </li>
-        <li>
-          <a href="Media/Sant-Sandesh/SantSandesh3.pdf" target="_blank" rel="noopener noreferrer">
-            <span>Sant Sandesh — Issue 3</span>
-            <span class="pdf-label">PDF</span>
-          </a>
-        </li>
-        <li>
-          <a href="Media/Sant-Sandesh/SantSandesh4.pdf" target="_blank" rel="noopener noreferrer">
-            <span>Sant Sandesh — Issue 4</span>
-            <span class="pdf-label">PDF</span>
-          </a>
-        </li>
-      </ul>
+      <p class="media-panel-intro">Sant Sandesh — monthly magazine. Select a year, then tap an issue to open the PDF.</p>
+      <div class="magazine-years" id="magazineYears">
+        <button class="magazine-year active" data-mag-year="2024">2024</button>
+        <button class="magazine-year" data-mag-year="2023">2023</button>
+        <button class="magazine-year" data-mag-year="earlier">Earlier Issues</button>
+      </div>
+      <div class="magazine-group active" data-mag-year="2024">
+        <ul class="sant-sandesh-list">
+          <li><a href="Media/Sant-Sandesh/2024/Jan-2024.pdf" target="_blank" rel="noopener noreferrer"><span>January 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Feb-2024.pdf" target="_blank" rel="noopener noreferrer"><span>February 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Apr-2024.pdf" target="_blank" rel="noopener noreferrer"><span>April 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/May-2024.pdf" target="_blank" rel="noopener noreferrer"><span>May 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Jun-2024.pdf" target="_blank" rel="noopener noreferrer"><span>June 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Jul-2024.pdf" target="_blank" rel="noopener noreferrer"><span>July 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Aug-2024.pdf" target="_blank" rel="noopener noreferrer"><span>August 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Sep-2024.pdf" target="_blank" rel="noopener noreferrer"><span>September 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Oct-2024.pdf" target="_blank" rel="noopener noreferrer"><span>October 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Nov-2024.pdf" target="_blank" rel="noopener noreferrer"><span>November 2024</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2024/Dec-2024.pdf" target="_blank" rel="noopener noreferrer"><span>December 2024</span><span class="pdf-label">PDF</span></a></li>
+        </ul>
+      </div>
+      <div class="magazine-group" data-mag-year="2023">
+        <ul class="sant-sandesh-list">
+          <li><a href="Media/Sant-Sandesh/2023/Jan-2023.pdf" target="_blank" rel="noopener noreferrer"><span>January 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Feb-2023.pdf" target="_blank" rel="noopener noreferrer"><span>February 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Mar-2023.pdf" target="_blank" rel="noopener noreferrer"><span>March 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/May-2023.pdf" target="_blank" rel="noopener noreferrer"><span>May 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Jun-2023.pdf" target="_blank" rel="noopener noreferrer"><span>June 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/July-202.pdf" target="_blank" rel="noopener noreferrer"><span>July 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Aug-2023.pdf" target="_blank" rel="noopener noreferrer"><span>August 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Sep-2023.pdf" target="_blank" rel="noopener noreferrer"><span>September 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Oct-2023.pdf" target="_blank" rel="noopener noreferrer"><span>October 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Nov-2023.pdf" target="_blank" rel="noopener noreferrer"><span>November 2023</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/2023/Dec-2023.pdf" target="_blank" rel="noopener noreferrer"><span>December 2023</span><span class="pdf-label">PDF</span></a></li>
+        </ul>
+      </div>
+      <div class="magazine-group" data-mag-year="earlier">
+        <ul class="sant-sandesh-list">
+          <li><a href="Media/Sant-Sandesh/Sant-Sandesh1.pdf" target="_blank" rel="noopener noreferrer"><span>Sant Sandesh — Issue 1</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/Sant-Sandesh2.pdf" target="_blank" rel="noopener noreferrer"><span>Sant Sandesh — Issue 2</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/SantSandesh3.pdf" target="_blank" rel="noopener noreferrer"><span>Sant Sandesh — Issue 3</span><span class="pdf-label">PDF</span></a></li>
+          <li><a href="Media/Sant-Sandesh/SantSandesh4.pdf" target="_blank" rel="noopener noreferrer"><span>Sant Sandesh — Issue 4</span><span class="pdf-label">PDF</span></a></li>
+        </ul>
+      </div>
     </div>
     <div id="mediaPanelShabad" class="media-panel" role="tabpanel" aria-labelledby="mediaTabShabad" hidden>
       <!-- <p class="media-panel-intro">Listen to the latest Shabad Vani by RadhaSwami Satsang Dinod. Each card opens the playlist or page in a new tab (source: <a href="https://radhaswamidinod.org/shabad_vani.html" target="_blank" rel="noopener noreferrer">radhaswamidinod.org</a>).</p> -->
@@ -2644,6 +2695,27 @@
         e.preventDefault();
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         showPanel(key);
+      });
+    });
+  })();
+
+  (function () {
+    var yearBtns = document.querySelectorAll('.magazine-year');
+    var groups = document.querySelectorAll('.magazine-group');
+    if (!yearBtns.length) return;
+
+    yearBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var yr = btn.getAttribute('data-mag-year');
+        yearBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        groups.forEach(function (g) {
+          if (g.getAttribute('data-mag-year') === yr) {
+            g.classList.add('active');
+          } else {
+            g.classList.remove('active');
+          }
+        });
       });
     });
   })();
