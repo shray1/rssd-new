@@ -1235,14 +1235,19 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      max-width: 640px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .sant-sandesh-list li {
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
       background: var(--white);
     }
-    .sant-sandesh-list li { border-bottom: 1px solid var(--border); }
-    .sant-sandesh-list li:last-child { border-bottom: none; }
+    @media (max-width: 600px) {
+      .sant-sandesh-list { grid-template-columns: 1fr; }
+    }
     .sant-sandesh-list a {
       display: flex;
       align-items: center;
