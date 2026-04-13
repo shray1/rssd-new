@@ -2643,6 +2643,16 @@
    */
   var HERO_MOBILE_BG_IMAGE = false;
 
+  /**
+   * ─── UPCOMING PROGRAMME HERO CARD (defaults by viewport) ───
+   * Uses the same max width as the mobile nav (hamburger); see @media (max-width: 900px).
+   */
+  var HERO_UPCOMING_PROGRAMME_MOBILE_MAX_PX = 900;
+  /** Viewport wider than mobile max → start with card hidden (nav "Upcoming Programme" to show). */
+  var HERO_UPCOMING_PROGRAMME_CLOSED_ON_DESKTOP = true;
+  /** Viewport at mobile max or narrower → start with card visible. */
+  var HERO_UPCOMING_PROGRAMME_CLOSED_ON_MOBILE = false;
+
   (function () {
     var el = document.querySelector('.darshan');
     if (el) {
@@ -3200,6 +3210,24 @@
         showProgrammeCard();
       });
     });
+
+    function programmeMobileQuery() {
+      return window.matchMedia(
+        '(max-width: ' + HERO_UPCOMING_PROGRAMME_MOBILE_MAX_PX + 'px)'
+      );
+    }
+
+    function applyProgrammeDefaultForViewport() {
+      var mobile = programmeMobileQuery().matches;
+      var wantClosed = mobile
+        ? HERO_UPCOMING_PROGRAMME_CLOSED_ON_MOBILE
+        : HERO_UPCOMING_PROGRAMME_CLOSED_ON_DESKTOP;
+      if (wantClosed) {
+        hideProgrammeCard();
+      }
+    }
+
+    applyProgrammeDefaultForViewport();
   })();
 
   (function () {
