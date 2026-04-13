@@ -410,6 +410,72 @@
     .hero-inner.hero-inner--no-programme-card {
       grid-template-columns: 1fr;
     }
+
+    /* Desktop: Upcoming Programme hover preview (blur page, centred card) */
+    .hero-programme-hover-root {
+      position: fixed;
+      inset: 0;
+      z-index: 350;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 48px);
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease, visibility 0.24s ease;
+    }
+    .hero-programme-hover-root.is-active {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero-programme-hover-root__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(250, 246, 239, 0.42);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .hero-programme-hover-root__shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      pointer-events: auto;
+    }
+    .hero-programme-hover-root .hero-card {
+      margin-top: 0;
+      box-shadow: 0 32px 80px rgba(90, 62, 40, 0.14);
+      animation: heroProgrammeHoverIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes heroProgrammeHoverIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    body.hero-programme-hover-open {
+      overflow: hidden;
+    }
+    @media (max-width: 900px) {
+      .hero-programme-hover-root {
+        display: none !important;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-programme-hover-root {
+        transition-duration: 0.01ms;
+      }
+      .hero-programme-hover-root .hero-card {
+        animation: none;
+      }
+    }
+
     .hero-card-badge {
       position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
       width: 36px; height: 36px;
@@ -1817,6 +1883,12 @@
 </head>
 <body id="top">
 
+<!-- Desktop hover: programme preview above blurred page (see script + .hero-programme-hover-root) -->
+<div id="heroProgrammeHoverRoot" class="hero-programme-hover-root" aria-hidden="true">
+  <div class="hero-programme-hover-root__backdrop" aria-hidden="true"></div>
+  <div class="hero-programme-hover-root__shell" id="heroProgrammeHoverShell"></div>
+</div>
+
 <!-- ── HEADER ── -->
 <header>
   <div class="nav-inner">
@@ -2652,6 +2724,12 @@
   var HERO_UPCOMING_PROGRAMME_CLOSED_ON_DESKTOP = true;
   /** Viewport at mobile max or narrower → start with card visible. */
   var HERO_UPCOMING_PROGRAMME_CLOSED_ON_MOBILE = false;
+  /**
+   * ─── Desktop: blurred hover preview for Upcoming Programme ───
+   * Set to true  → hover opens overlay + centred card (fine pointer + hover only).
+   * Set to false → desktop uses click to open the in-page card (scroll to hero), previous behaviour.
+   */
+  var HERO_UPCOMING_PROGRAMME_DESKTOP_HOVER_PREVIEW = true;
 
   (function () {
     var el = document.querySelector('.darshan');
@@ -3183,16 +3261,75 @@
     var dismissBtn = document.getElementById('heroProgrammeDismiss');
     var inner = document.getElementById('heroInner');
     var mobileMenu = document.getElementById('mobileMenu');
+    var hoverRoot = document.getElementById('heroProgrammeHoverRoot');
+    var hoverShell = document.getElementById('heroProgrammeHoverShell');
+    var hoverBackdrop = hoverRoot && hoverRoot.querySelector('.hero-programme-hover-root__backdrop');
     var showTriggers = document.querySelectorAll('[data-show-hero-programme]');
     if (!card || !inner) return;
 
+    var hoverActive = false;
+    var restoreDismissedAfterHover = false;
+
+    function programmeMobileQuery() {
+      return window.matchMedia(
+        '(max-width: ' + HERO_UPCOMING_PROGRAMME_MOBILE_MAX_PX + 'px)'
+      );
+    }
+
+    function isDesktopProgrammeUi() {
+      return !programmeMobileQuery().matches;
+    }
+
+    function desktopProgrammeHoverPreview() {
+      if (!HERO_UPCOMING_PROGRAMME_DESKTOP_HOVER_PREVIEW) return false;
+      return (
+        isDesktopProgrammeUi() &&
+        window.matchMedia('(hover: hover)').matches
+      );
+    }
+
+    function closeDesktopHover() {
+      if (!hoverActive) return;
+      hoverActive = false;
+      if (hoverRoot) hoverRoot.classList.remove('is-active');
+      document.body.classList.remove('hero-programme-hover-open');
+      if (hoverRoot) hoverRoot.setAttribute('aria-hidden', 'true');
+      inner.appendChild(card);
+      if (restoreDismissedAfterHover) {
+        card.classList.add('is-dismissed');
+      } else {
+        inner.classList.remove('hero-inner--no-programme-card');
+      }
+    }
+
+    function openDesktopHover() {
+      if (
+        !desktopProgrammeHoverPreview() ||
+        !hoverRoot ||
+        !hoverShell ||
+        hoverActive
+      ) {
+        return;
+      }
+      restoreDismissedAfterHover = card.classList.contains('is-dismissed');
+      inner.classList.add('hero-inner--no-programme-card');
+      hoverShell.appendChild(card);
+      card.classList.remove('is-dismissed');
+      hoverRoot.classList.add('is-active');
+      document.body.classList.add('hero-programme-hover-open');
+      hoverRoot.setAttribute('aria-hidden', 'false');
+      hoverActive = true;
+    }
+
     function hideProgrammeCard() {
+      closeDesktopHover();
       card.classList.add('is-dismissed');
       inner.classList.add('hero-inner--no-programme-card');
       document.body.classList.add('hero-programme-was-dismissed');
     }
 
     function showProgrammeCard() {
+      closeDesktopHover();
       card.classList.remove('is-dismissed');
       inner.classList.remove('hero-inner--no-programme-card');
       document.body.classList.remove('hero-programme-was-dismissed');
@@ -3207,15 +3344,71 @@
     showTriggers.forEach(function (el) {
       el.addEventListener('click', function (e) {
         e.preventDefault();
-        showProgrammeCard();
+        if (!isDesktopProgrammeUi()) {
+          showProgrammeCard();
+          return;
+        }
+        if (!HERO_UPCOMING_PROGRAMME_DESKTOP_HOVER_PREVIEW) {
+          showProgrammeCard();
+          return;
+        }
+        if (!window.matchMedia('(hover: hover)').matches) {
+          showProgrammeCard();
+          return;
+        }
+      });
+
+      el.addEventListener('mouseenter', function () {
+        openDesktopHover();
+      });
+
+      el.addEventListener('mouseleave', function (e) {
+        if (!desktopProgrammeHoverPreview() || !hoverActive) return;
+        var rel = e.relatedTarget;
+        if (rel && hoverRoot && hoverRoot.contains(rel)) return;
+        closeDesktopHover();
       });
     });
 
-    function programmeMobileQuery() {
-      return window.matchMedia(
-        '(max-width: ' + HERO_UPCOMING_PROGRAMME_MOBILE_MAX_PX + 'px)'
-      );
+    function elContainsTrigger(node) {
+      while (node && node.nodeType !== 1) node = node.parentNode;
+      if (!node) return false;
+      for (var i = 0; i < showTriggers.length; i++) {
+        if (showTriggers[i] === node || showTriggers[i].contains(node)) return true;
+      }
+      return false;
     }
+
+    if (hoverRoot) {
+      hoverRoot.addEventListener('mouseleave', function (e) {
+        if (!desktopProgrammeHoverPreview() || !hoverActive) return;
+        var rel = e.relatedTarget;
+        if (rel && (hoverRoot.contains(rel) || elContainsTrigger(rel))) return;
+        closeDesktopHover();
+      });
+
+      if (hoverBackdrop) {
+        hoverBackdrop.addEventListener('click', function () {
+          closeDesktopHover();
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && hoverActive && desktopProgrammeHoverPreview()) {
+          closeDesktopHover();
+        }
+      });
+    }
+
+    var resizeHoverTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeHoverTimer);
+      resizeHoverTimer = setTimeout(function () {
+        if (hoverActive && programmeMobileQuery().matches) {
+          closeDesktopHover();
+        }
+      }, 120);
+    });
 
     function applyProgrammeDefaultForViewport() {
       var mobile = programmeMobileQuery().matches;
