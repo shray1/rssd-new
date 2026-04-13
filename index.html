@@ -1703,6 +1703,147 @@
       color: var(--saffron);
     }
 
+    /* ── NEWSLETTER / SUBSCRIBE ── */
+    .subscribe-strip {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--card-bg) 100%);
+      border-top: 1px solid var(--border);
+      padding: 52px 5% 56px;
+    }
+    .subscribe-strip__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+    }
+    .subscribe-strip__eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--saffron);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .subscribe-strip__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.65rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--warm-dark);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .subscribe-strip__desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 36ch;
+    }
+    .subscribe-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: stretch;
+    }
+    .subscribe-form input[type="email"] {
+      flex: 1 1 200px;
+      min-width: 0;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--white);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .subscribe-form input[type="email"]::placeholder {
+      color: rgba(122, 96, 80, 0.55);
+    }
+    .subscribe-form input[type="email"]:focus {
+      outline: none;
+      border-color: rgba(212, 98, 26, 0.45);
+      box-shadow: 0 0 0 3px rgba(212, 98, 26, 0.12);
+    }
+    .subscribe-form__btn {
+      flex: 0 0 auto;
+      padding: 14px 26px;
+      border: none;
+      border-radius: 999px;
+      background: var(--saffron);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .subscribe-form__btn:hover {
+      background: var(--gold);
+    }
+    .subscribe-form__btn:active {
+      transform: scale(0.98);
+    }
+    .subscribe-form__btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .subscribe-strip__fine {
+      grid-column: 1 / -1;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .subscribe-strip__fine a {
+      color: var(--saffron);
+      text-decoration: none;
+    }
+    .subscribe-strip__fine a:hover {
+      text-decoration: underline;
+    }
+    .subscribe-strip__status {
+      grid-column: 1 / -1;
+      font-size: 0.88rem;
+      color: var(--saffron);
+      margin-top: 12px;
+      min-height: 1.4em;
+    }
+    .subscribe-strip__status.is-error {
+      color: #a34;
+    }
+    .subscribe-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (max-width: 720px) {
+      .subscribe-strip__inner {
+        grid-template-columns: 1fr;
+      }
+      .subscribe-form {
+        flex-direction: column;
+      }
+      /* In a column flex, flex-grow:1 on the input was stretching it vertically */
+      .subscribe-form input[type="email"] {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 11px 16px;
+        font-size: 0.88rem;
+      }
+      .subscribe-form__btn {
+        width: 100%;
+        padding: 12px 20px;
+      }
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--warm-dark); color: rgba(200,160,120,0.7);
@@ -2663,6 +2804,37 @@
   </div>
 </section>
 
+<!-- ── SUBSCRIBE (after contact — same scroll journey) ── -->
+<section class="subscribe-strip" id="subscribe" aria-labelledby="subscribe-title">
+  <div class="section-inner subscribe-strip__inner">
+    <div>
+      <p class="subscribe-strip__eyebrow">Stay Connected</p>
+      <h2 class="subscribe-strip__title" id="subscribe-title">Updates by email</h2>
+      <p class="subscribe-strip__desc">
+        Occasional messages with the monthly magazine, satsang highlights, and upcoming programme dates. No spam.
+      </p>
+    </div>
+    <form class="subscribe-form" id="subscribeForm" method="post" novalidate>
+      <label for="subscribe-email" class="subscribe-sr-only">Email address</label>
+      <input
+        type="email"
+        id="subscribe-email"
+        name="email"
+        autocomplete="email"
+        inputmode="email"
+        placeholder="you@example.com"
+        required
+      />
+      <button type="submit" class="subscribe-form__btn" id="subscribeSubmit">Subscribe</button>
+    </form>
+    <p class="subscribe-strip__status" id="subscribeStatus" aria-live="polite"></p>
+    <p class="subscribe-strip__fine">
+      We respect your privacy. You can leave the list anytime. For questions, write to
+      <a href="mailto:info@radhaswamidinod.org">info@radhaswamidinod.org</a>.
+    </p>
+  </div>
+</section>
+
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
@@ -2688,6 +2860,7 @@
       <div class="footer-col">
         <h5>Connect</h5>
         <a href="#media" data-open-media-tab="programmes">Programmes</a>
+        <a href="#subscribe">Email updates</a>
         <a href="#contact">Contact Us</a>
         <a href="#gallery">Photo Gallery</a>
         <a href="#">Satguru Kripa</a>
@@ -2731,6 +2904,13 @@
    */
   var HERO_UPCOMING_PROGRAMME_DESKTOP_HOVER_PREVIEW = true;
 
+  /**
+   * ─── Newsletter / subscribe form ───
+   * Set to your form endpoint (e.g. Formspree https://formspree.io/f/xxxx) to POST emails.
+   * Leave empty → submit shows a thank-you message only (wire a provider when ready).
+   */
+  var NEWSLETTER_FORM_ACTION = '';
+
   (function () {
     var el = document.querySelector('.darshan');
     if (el) {
@@ -2744,6 +2924,43 @@
     if (bg && !HERO_MOBILE_BG_IMAGE) {
       bg.classList.add('hide-mobile');
     }
+  })();
+
+  (function () {
+    var form = document.getElementById('subscribeForm');
+    var email = document.getElementById('subscribe-email');
+    var statusEl = document.getElementById('subscribeStatus');
+    var btn = document.getElementById('subscribeSubmit');
+    if (!form || !email || !statusEl || !btn) return;
+
+    var action =
+      typeof NEWSLETTER_FORM_ACTION === 'string' ? NEWSLETTER_FORM_ACTION.trim() : '';
+    if (action) {
+      form.setAttribute('action', action);
+      form.setAttribute('method', 'post');
+    }
+
+    form.addEventListener('submit', function (e) {
+      statusEl.textContent = '';
+      statusEl.classList.remove('is-error');
+      if (!email.checkValidity()) {
+        e.preventDefault();
+        statusEl.classList.add('is-error');
+        statusEl.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      if (action) {
+        return;
+      }
+      e.preventDefault();
+      btn.disabled = true;
+      statusEl.textContent =
+        'Thank you. We will send magazine and programme updates to the address you provided.';
+      email.value = '';
+      window.setTimeout(function () {
+        btn.disabled = false;
+      }, 2200);
+    });
   })();
 
   (function () {
