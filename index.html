@@ -2912,7 +2912,8 @@
    */
   var NEWSLETTER_FORM_ACTION =
     'https://docs.google.com/forms/d/e/1FAIpQLSfwtgMOMmDaAhtVnkAPDk2t2VEMydtM9T87rSc2G1exH_JK3w/formResponse';
-  var NEWSLETTER_EMAIL_FIELD_NAME = 'entry.2063104347';
+  var NEWSLETTER_EMAIL_FIELD_NAME = 'entry.32755692';
+  var NEWSLETTER_EMAIL_FALLBACK_FIELD_NAME = 'entry.2063104347';
 
   (function () {
     var el = document.querySelector('.darshan');
@@ -2942,6 +2943,10 @@
       typeof NEWSLETTER_EMAIL_FIELD_NAME === 'string'
         ? NEWSLETTER_EMAIL_FIELD_NAME.trim()
         : '';
+    var fallbackEmailFieldName =
+      typeof NEWSLETTER_EMAIL_FALLBACK_FIELD_NAME === 'string'
+        ? NEWSLETTER_EMAIL_FALLBACK_FIELD_NAME.trim()
+        : '';
     if (action) {
       form.setAttribute('action', action);
       form.setAttribute('method', 'post');
@@ -2967,7 +2972,14 @@
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: new URLSearchParams(new FormData(form)).toString()
+          body: (function () {
+            var params = new URLSearchParams();
+            params.append(emailFieldName || 'email', email.value);
+            if (fallbackEmailFieldName && fallbackEmailFieldName !== emailFieldName) {
+              params.append(fallbackEmailFieldName, email.value);
+            }
+            return params.toString();
+          })()
         })
           .then(function () {
             statusEl.textContent =
