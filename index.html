@@ -2908,10 +2908,11 @@
 
   /**
    * ─── Newsletter / subscribe form ───
-   * Set to your form endpoint (e.g. Formspree https://formspree.io/f/xxxx) to POST emails.
-   * Leave empty → submit shows a thank-you message only (wire a provider when ready).
+   * Google Forms endpoint + entry field for EMAIL ADDRESS.
    */
-  var NEWSLETTER_FORM_ACTION = '';
+  var NEWSLETTER_FORM_ACTION =
+    'https://docs.google.com/forms/d/e/1FAIpQLSfwtgMOMmDaAhtVnkAPDk2t2VEMydtM9T87rSc2G1exH_JK3w/formResponse';
+  var NEWSLETTER_EMAIL_FIELD_NAME = 'entry.2063104347';
 
   (function () {
     var el = document.querySelector('.darshan');
@@ -2937,9 +2938,16 @@
 
     var action =
       typeof NEWSLETTER_FORM_ACTION === 'string' ? NEWSLETTER_FORM_ACTION.trim() : '';
+    var emailFieldName =
+      typeof NEWSLETTER_EMAIL_FIELD_NAME === 'string'
+        ? NEWSLETTER_EMAIL_FIELD_NAME.trim()
+        : '';
     if (action) {
       form.setAttribute('action', action);
       form.setAttribute('method', 'post');
+      if (emailFieldName) {
+        email.setAttribute('name', emailFieldName);
+      }
     }
 
     form.addEventListener('submit', function (e) {
@@ -2952,6 +2960,30 @@
         return;
       }
       if (action) {
+        e.preventDefault();
+        btn.disabled = true;
+        statusEl.textContent = 'Submitting...';
+        fetch(action, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams(new FormData(form)).toString()
+        })
+          .then(function () {
+            statusEl.textContent =
+              'Thank you. Your email has been added to our update list.';
+            email.value = '';
+          })
+          .catch(function () {
+            statusEl.classList.add('is-error');
+            statusEl.textContent =
+              'Submission failed. Please try again in a moment.';
+          })
+          .finally(function () {
+            window.setTimeout(function () {
+              btn.disabled = false;
+            }, 1000);
+          });
         return;
       }
       e.preventDefault();
