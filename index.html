@@ -1958,6 +1958,265 @@
       .stat { flex: 1 0 40%; }
     }
 
+    /* ── FEATURED ARTICLES ── */
+    .articles-bg {
+      background:
+        linear-gradient(135deg, rgba(200,148,42,0.05) 0%, transparent 55%),
+        var(--cream);
+    }
+    .articles-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+    .articles-slider__btn {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,148,42,0.32);
+      background: var(--white);
+      color: var(--mid);
+      font-size: 1.35rem; line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(90,62,40,0.08);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .articles-slider__btn:hover:not(:disabled) {
+      border-color: rgba(212,98,26,0.45);
+      color: var(--saffron);
+      box-shadow: 0 6px 20px rgba(90,62,40,0.12);
+    }
+    .articles-slider__btn:disabled { opacity: 0.32; cursor: not-allowed; box-shadow: none; }
+    .articles-slider__btn:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }
+
+    .articles-slider__viewport {
+      flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 8px 4px 18px;
+      margin: -8px 0 -8px;
+      scroll-snap-type: x proximity;
+    }
+    .articles-slider__viewport::-webkit-scrollbar { display: none; }
+
+    .articles-track {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 26px;
+      min-width: max-content;
+      align-items: stretch;
+    }
+    .article-card {
+      flex: 0 0 344px;
+      width: 344px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212,98,26,0.32);
+      box-shadow: 0 18px 44px rgba(90,62,40,0.14);
+    }
+    .article-card__media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: rgba(200,148,42,0.08);
+      border: none; padding: 0; margin: 0;
+      cursor: pointer;
+    }
+    .article-card__media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .article-card:hover .article-card__media img { transform: scale(1.05); }
+    .article-card__body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 22px 24px 24px;
+    }
+    .article-card__cat {
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--saffron); font-weight: 500; margin-bottom: 10px;
+    }
+    .article-card__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.62rem; font-weight: 400; line-height: 1.2;
+      color: var(--warm-dark);
+      margin-bottom: 12px;
+    }
+    .article-card__meta {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .article-card__meta span { color: var(--light-mid); }
+    .article-card__excerpt {
+      font-size: 0.9rem; color: var(--muted); line-height: 1.75;
+      margin-bottom: 22px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-card__btn {
+      align-self: flex-start;
+      margin-top: auto;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 500;
+      color: var(--mid);
+      background: rgba(212,98,26,0.08);
+      border: 1px solid rgba(200,148,42,0.3);
+      border-radius: 6px;
+      padding: 11px 22px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .article-card__btn:hover {
+      background: var(--saffron);
+      border-color: transparent;
+      color: var(--white);
+    }
+    .article-card__btn:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }
+    .articles-empty {
+      margin: 0;
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--mid);
+      opacity: 0.85;
+      min-width: min(100%, 280px);
+    }
+
+    /* ── ARTICLE MODAL ── */
+    .article-modal {
+      position: fixed; inset: 0; z-index: 220;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      background: rgba(28,19,9,0.6);
+      backdrop-filter: blur(4px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
+    }
+    .article-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .article-modal:not(.is-open) { pointer-events: none; }
+    .article-modal__panel {
+      position: relative;
+      width: 100%; max-width: 780px; max-height: min(90vh, 860px);
+      display: flex; flex-direction: column;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(28,19,9,0.3);
+    }
+    .article-modal__close {
+      position: absolute; top: 14px; right: 14px; z-index: 2;
+      width: 38px; height: 38px;
+      border: none; border-radius: 8px;
+      background: rgba(250,246,239,0.9);
+      color: var(--mid);
+      font-size: 1.3rem; line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(28,19,9,0.18);
+      transition: background 0.2s, color 0.2s;
+    }
+    .article-modal__close:hover { background: var(--saffron); color: var(--white); }
+    .article-modal__scroll {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .article-modal__hero {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: rgba(200,148,42,0.08);
+    }
+    .article-modal__inner { padding: 32px 38px 40px; }
+    .article-modal__cat {
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--saffron); font-weight: 500; display: block; margin-bottom: 10px;
+    }
+    .article-modal__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 300; line-height: 1.18;
+      color: var(--warm-dark);
+      margin-bottom: 12px;
+    }
+    .article-modal__meta {
+      font-size: 0.74rem; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 26px;
+    }
+    .article-modal__body p {
+      font-size: 0.97rem; color: var(--text); line-height: 1.85; margin-bottom: 1.1em;
+    }
+    .article-modal__body p:last-child { margin-bottom: 0; }
+    .article-modal__gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+    .article-modal__gallery:empty { display: none; }
+    .article-modal__gallery figure { margin: 0; }
+    .article-modal__gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      border: 1px solid var(--border);
+    }
+    .article-modal__gallery figcaption {
+      font-size: 0.75rem; color: var(--muted); margin-top: 7px; line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      .article-card { flex: 0 0 min(80vw, 320px); width: min(80vw, 320px); }
+      .articles-track { gap: 18px; }
+      .articles-slider__btn { width: 38px; height: 38px; font-size: 1.15rem; }
+    }
+    /* Phones: drop the arrows and give the full width to the cards — swiping is the natural gesture here */
+    @media (max-width: 700px) {
+      .articles-slider__btn { display: none; }
+      .articles-slider-wrap { gap: 0; }
+      .article-card { flex: 0 0 min(78vw, 320px); width: min(78vw, 320px); }
+    }
+    @media (max-width: 900px) {
+      .article-modal { padding: 0; }
+      .article-modal__panel { max-width: 100%; max-height: 100vh; height: 100%; border-radius: 0; border: none; }
+      .article-modal__inner { padding: 26px 22px 36px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .articles-slider__viewport { scroll-behavior: auto; }
+      .article-card,
+      .article-card__media img { transition: none; }
+      .article-card:hover { transform: none; }
+      .article-card:hover .article-card__media img { transform: none; }
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -2049,6 +2308,7 @@
       <a href="#pillars">Faith</a>
       <a href="#lineage">Lineage</a>
       <a href="#media">Media</a>
+      <a href="#articles">Articles</a>
       <button type="button" class="nav-programme-trigger" data-show-hero-programme aria-label="Show upcoming programme in hero">Upcoming Programme</button>
       <a href="#contact" class="nav-btn">Contact</a>
     </nav>
@@ -2065,6 +2325,7 @@
   <a href="#pillars" onclick="document.getElementById('mobileMenu').classList.remove('open')">Faith</a>
   <a href="#lineage" onclick="document.getElementById('mobileMenu').classList.remove('open')">Lineage</a>
   <a href="#media" onclick="document.getElementById('mobileMenu').classList.remove('open')">Media</a>
+  <a href="#articles" onclick="document.getElementById('mobileMenu').classList.remove('open')">Articles</a>
   <button type="button" class="nav-programme-trigger" data-show-hero-programme aria-label="Show upcoming programme in hero">Upcoming Programme</button>
   <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
 </div>
@@ -2718,6 +2979,39 @@
   </div>
 </section>
 
+
+<!-- ── FEATURED ARTICLES ── -->
+<!-- Cards + modal content are generated from the ARTICLES array in the script below. -->
+<section id="articles" class="articles-bg">
+  <div class="section-inner">
+    <span class="section-tag">Featured Articles</span>
+    <h2 class="section-title">Words from the Satsang</h2>
+    <p class="section-desc">Selected discourses and writings from Param Sant Kanwar Saheb Ji Maharaj. Slide across to browse, and open any article to read it in full.</p>
+    <div class="articles-slider-wrap">
+      <button type="button" class="articles-slider__btn articles-slider__btn--prev" aria-label="Previous articles">&#8249;</button>
+      <div class="articles-slider__viewport" id="articlesViewport" role="region" aria-label="Featured articles" tabindex="0">
+        <div class="articles-track" id="articlesTrack"></div>
+      </div>
+      <button type="button" class="articles-slider__btn articles-slider__btn--next" aria-label="Next articles">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<div id="articleModal" class="article-modal" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle" aria-hidden="true">
+  <div class="article-modal__panel">
+    <button type="button" class="article-modal__close" aria-label="Close article">&times;</button>
+    <div class="article-modal__scroll" id="articleModalScroll">
+      <img id="articleModalHero" class="article-modal__hero" src="" alt="" decoding="async"/>
+      <div class="article-modal__inner">
+        <span id="articleModalCat" class="article-modal__cat"></span>
+        <h2 id="articleModalTitle" class="article-modal__title"></h2>
+        <p id="articleModalMeta" class="article-modal__meta"></p>
+        <div id="articleModalBody" class="article-modal__body"></div>
+        <div id="articleModalGallery" class="article-modal__gallery"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ── PHOTO GALLERY ── -->
 <section id="gallery">
@@ -3545,6 +3839,213 @@
     }
 
     applyCategory('maharaj-ji');
+  })();
+
+  /* ── FEATURED ARTICLES: slider + read-more modal ──
+     Content is NOT edited here. Each article lives in its own folder:
+       Media/Articles/<folder>/article.js   (the text)
+       Media/Articles/<folder>/*.jpg        (its pictures)
+     and the folder is listed in Media/Articles/index.js.
+     See Media/Articles/README.md for the admin instructions.
+
+     The data files are loaded as <script> tags rather than fetched, so the
+     section also works when index.html is opened directly from disk (file://),
+     where browsers block fetch() on local files. */
+  (function () {
+    const ARTICLES_BASE = 'Media/Articles/';
+    let ARTICLES = [];
+    let folderOrder = [];
+    const loadedByFolder = {};
+
+    /* Called by Media/Articles/index.js */
+    window.RSSD_ARTICLE_LIST = function (list) {
+      if (Array.isArray(list)) folderOrder = list;
+    };
+    /* Called by each Media/Articles/<folder>/article.js */
+    window.RSSD_ARTICLE = function (data) {
+      const el = document.currentScript;
+      const folder = el && el.getAttribute('data-article-folder');
+      if (folder && data) loadedByFolder[folder] = data;
+    };
+
+    const section = document.getElementById('articles');
+    const track = document.getElementById('articlesTrack');
+    const viewport = document.getElementById('articlesViewport');
+    const modal = document.getElementById('articleModal');
+    if (!section || !track || !viewport || !modal) return;
+
+    const btnPrev = section.querySelector('.articles-slider__btn--prev');
+    const btnNext = section.querySelector('.articles-slider__btn--next');
+    const btnClose = modal.querySelector('.article-modal__close');
+    const scrollBox = document.getElementById('articleModalScroll');
+    const heroEl = document.getElementById('articleModalHero');
+    const catEl = document.getElementById('articleModalCat');
+    const titleEl = document.getElementById('articleModalTitle');
+    const metaEl = document.getElementById('articleModalMeta');
+    const bodyEl = document.getElementById('articleModalBody');
+    const galleryEl = document.getElementById('articleModalGallery');
+
+    let lastFocus = null;
+    const tolerance = 3;
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function maxScroll() {
+      return Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    }
+
+    function updateArrows() {
+      if (!btnPrev || !btnNext) return;
+      const max = maxScroll();
+      btnPrev.disabled = viewport.scrollLeft <= tolerance;
+      btnNext.disabled = max <= tolerance || viewport.scrollLeft >= max - tolerance;
+    }
+
+    function goScroll(direction) {
+      const step = Math.max(220, Math.floor(viewport.clientWidth * 0.85));
+      const target = Math.max(0, Math.min(maxScroll(), viewport.scrollLeft + direction * step));
+      viewport.scrollLeft = target;
+    }
+
+    function renderCards() {
+      if (!ARTICLES.length) {
+        track.innerHTML = '<p class="articles-empty" role="status">Articles could not be loaded just now. Please try again later.</p>';
+        if (btnPrev) btnPrev.disabled = true;
+        if (btnNext) btnNext.disabled = true;
+        return;
+      }
+      track.innerHTML = ARTICLES.map(function (a, i) {
+        return '<article class="article-card">' +
+            '<button type="button" class="article-card__media" data-article-index="' + i +
+              '" aria-label="Read: ' + esc(a.title) + '">' +
+              '<img src="' + esc(a.base + a.cover) + '" alt="' + esc(a.coverAlt || a.title) + '" loading="lazy" decoding="async">' +
+            '</button>' +
+            '<div class="article-card__body">' +
+              '<p class="article-card__cat">' + esc(a.category) + '</p>' +
+              '<h3 class="article-card__title">' + esc(a.title) + '</h3>' +
+              '<p class="article-card__meta">' + esc(a.author) + ' <span>&middot;</span> ' + esc(a.date) + '</p>' +
+              '<p class="article-card__excerpt">' + esc(a.excerpt) + '</p>' +
+              '<button type="button" class="article-card__btn" data-article-index="' + i + '">View Post</button>' +
+            '</div>' +
+          '</article>';
+      }).join('');
+    }
+
+    function openArticle(i) {
+      const a = ARTICLES[i];
+      if (!a) return;
+      lastFocus = document.activeElement;
+      heroEl.src = a.base + a.cover;
+      heroEl.alt = a.coverAlt || a.title;
+      catEl.textContent = a.category;
+      titleEl.textContent = a.title;
+      metaEl.textContent = a.author + ' · ' + a.date;
+      bodyEl.innerHTML = (a.body || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+      galleryEl.innerHTML = (a.images || []).map(function (img) {
+        return '<figure><img src="' + esc(a.base + img.src) + '" alt="' + esc(img.alt || '') +
+          '" loading="lazy" decoding="async">' +
+          (img.caption ? '<figcaption>' + esc(img.caption) + '</figcaption>' : '') +
+          '</figure>';
+      }).join('');
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      scrollBox.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      /* wait a frame: the panel is still visibility:hidden in this tick, so it cannot take focus yet */
+      requestAnimationFrame(function () { btnClose.focus(); });
+    }
+
+    function closeArticle() {
+      /* move focus out before hiding, or the browser warns that a focused
+         element is being hidden from assistive technology */
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+      else if (document.activeElement && modal.contains(document.activeElement)) document.activeElement.blur();
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      heroEl.removeAttribute('src');
+      heroEl.alt = '';
+      bodyEl.innerHTML = '';
+      galleryEl.innerHTML = '';
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    track.addEventListener('click', function (e) {
+      const trigger = e.target.closest('[data-article-index]');
+      if (!trigger || !track.contains(trigger)) return;
+      const i = parseInt(trigger.getAttribute('data-article-index'), 10);
+      if (!Number.isNaN(i)) openArticle(i);
+    });
+
+    btnClose.addEventListener('click', closeArticle);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeArticle(); });
+    modal.querySelector('.article-modal__panel').addEventListener('click', function (e) { e.stopPropagation(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeArticle();
+    });
+
+    if (btnPrev && btnNext) {
+      btnPrev.addEventListener('click', function () { goScroll(-1); });
+      btnNext.addEventListener('click', function () { goScroll(1); });
+      viewport.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows);
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(updateArrows).observe(viewport);
+      }
+      viewport.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goScroll(-1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goScroll(1); }
+      });
+    }
+
+    /* Loads one data file. Resolves either way — a missing or broken file is
+       reported and skipped, so one bad article can never take the section down. */
+    function loadScript(src, folder) {
+      return new Promise(function (resolve) {
+        const s = document.createElement('script');
+        s.src = src;
+        if (folder) s.setAttribute('data-article-folder', folder);
+        s.onload = function () { resolve(); };
+        s.onerror = function () {
+          console.warn('Featured articles: could not load ' + src);
+          resolve();
+        };
+        document.head.appendChild(s);
+      });
+    }
+
+    /* Read Media/Articles/index.js, then each folder's article.js. */
+    function loadArticles() {
+      return loadScript(ARTICLES_BASE + 'index.js')
+        .then(function () {
+          return Promise.all(folderOrder.map(function (folder) {
+            return loadScript(ARTICLES_BASE + folder + '/article.js', folder);
+          }));
+        })
+        .then(function () {
+          ARTICLES = folderOrder.map(function (folder) {
+            const a = loadedByFolder[folder];
+            if (!a) {
+              console.warn('Featured articles: skipping "' + folder + '" — no article data registered.');
+              return null;
+            }
+            a.base = ARTICLES_BASE + folder + '/';
+            a.body = a.body || [];
+            a.images = a.images || [];
+            if (!a.excerpt) a.excerpt = a.body[0] || '';
+            return a;
+          }).filter(Boolean);
+        });
+    }
+
+    loadArticles().then(function () {
+      renderCards();
+      requestAnimationFrame(updateArrows);
+    });
   })();
 
   (function () {
