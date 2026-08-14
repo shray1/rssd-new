@@ -3329,7 +3329,10 @@
       },
       'newspaper-clipings': {
         label: 'Newspaper clippings',
-        images: []
+        images: Array.from({ length: 12 }, (_, i) => ({
+          src: 'Media/img/Newspaper-Clippings/' + (i + 1) + '.jpeg',
+          alt: 'Newspaper clipping ' + (i + 1) + ' — RadhaSwami Satsang Dinod in the press'
+        }))
       }
     };
 
